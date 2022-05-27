@@ -6,16 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music4Kids</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.min.js"></script>
 </head>
 <body>
     <h1>Music4Kids</h1>
-    <i>Garrett wuz here</i>
-    <p>Test: <span id="readout"></span></p>
 </body>
 <script type="module">
     import * as library from './src/index.js'
     console.log(library)
-    const readout = document.getElementById('readout')
-    readout.innerHTML = library.functions.add(1)
+    // const readout = document.getElementById('readout')
+    // readout.innerHTML = library.functions.add(1)
 </script>
+
+<script src="sketch.js"></script>
 </html>
