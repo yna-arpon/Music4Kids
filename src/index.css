@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Righteous';
+}
+
+.header {
+  padding: 50px;
+  text-align: center;
+  height: 88.3vh;
+  background-image: linear-gradient(to bottom right, orange, yellow);
+  color: white;
+}
+
+.title {
+  font-size: xxx-large;
+  padding: top 0;
+}
+
+.forKids {
+  text-shadow: -1px -1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF;
+}
+
+.subtitle {
+  font-size: xxx-large;
+}
+.band {
+  height: 202.5px;
+  width: 300px;
+}
