@@ -5,12 +5,17 @@ body {
   font-family: 'Righteous';
 }
 
-.header {
+.startScreen {
   padding: 50px;
   text-align: center;
   height: 88.3vh;
   background-image: linear-gradient(to bottom right, orange, yellow);
   color: white;
+}
+
+.band {
+  height: 202.5px;
+  width: 300px;
 }
 
 .title {
@@ -24,8 +29,4 @@ body {
 
 .subtitle {
   font-size: xxx-large;
-}
-.band {
-  height: 202.5px;
-  width: 300px;
 }
