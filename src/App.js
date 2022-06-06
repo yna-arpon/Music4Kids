@@ -8,7 +8,6 @@ function App() {
         <StartScreen />
         <ModuleOptns />
       </div>
-      
     </div>
   );
 }

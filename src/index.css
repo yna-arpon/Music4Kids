@@ -1,14 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
 
-body {
+
+html, body {
   margin: 0;
   font-family: 'Righteous';
+  min-height: 100%;
 }
 
 .startScreen {
   padding: 50px;
   text-align: center;
-  height: 88.3vh;
+  background-color: #fff;
   background-image: linear-gradient(to bottom right, orange, yellow);
   color: white;
 }
@@ -42,4 +44,18 @@ body {
   cursor: pointer;
   font-size: 60px;
   font-family: inherit;
+}
+
+.vector1 {
+  position:absolute;
+  left:0;
+  top: 0;
+  height: auto;
+}
+
+.vector2 {
+  position:absolute;
+  right:0;
+  top: 0;
+  overflow: hidden;
 }
