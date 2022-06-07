@@ -33,7 +33,6 @@ body {
 
 .title {
   font-size: xxx-large;
-  padding: top 0;
 }
 
 .forKids {
@@ -58,13 +57,13 @@ body {
 }
 
 .vector1 {
-  position:absolute;
-  left:0;
+  position: absolute;
+  left: 0;
   top: 0;
 }
 
 .vector2 {
-  position:absolute;
-  right:0;
+  position: absolute;
+  right: 0;
   top: 0;
 }

@@ -1,7 +1,7 @@
 import React from 'react'
-import Photo from './band.png'
-import Vector1 from './vector1.png'
-import Vector2 from './vector2.png'
+import Photo from './photos/band.png'
+import Vector1 from './photos/vector1.png'
+import Vector2 from './photos/vector2.png'
 
 const Header = () => {
   return (

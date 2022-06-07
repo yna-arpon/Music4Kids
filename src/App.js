@@ -1,5 +1,5 @@
 import StartScreen from './components/StartScreen'
-import ModuleOptns from './components/ModuleOptns';
+import ModuleOptns from './components/ModeOptns';
 
 function App() {
   return (
