@@ -12,16 +12,16 @@ body {
 }
 
 .page {
-  display: flex;
-  background-image: linear-gradient(to bottom right, blue, purple);
-  align-items: center;
-  justify-content: center;
   height: 100vh;
   width: 100vw;
   z-index: 0;
   position: fixed;
   top: 0;
   left: 0;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
 
   transition: opacity 0.5s;
 }
@@ -32,30 +32,32 @@ body {
 }
 
 #start {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Originally in page ^ (might want to add back later) */
+
   padding: 50px;
   text-align: center;
-  background-color: #fff;
-  background-image: linear-gradient(to bottom right, orange, yellow);
+  background-image: url('./components/photos/startScreen.png');
   color: white;
   z-index: 2;
 }
 
-.band {
+#band {
   height: 202.5px;
   width: 300px;
 }
 
 .title {
   font-size: xxx-large;
+  color: white;
 }
 
-.forKids {
+#forKids {
   text-shadow: -1px -1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF;
 }
 
-.subtitle {
-  font-size: xxx-large;
-}
 
 .btn {
   background: rgba(255, 236, 188, 0.7);
@@ -70,14 +72,11 @@ body {
   font-family: inherit;
 }
 
-.vector1 {
-  position: absolute;
-  left: 0;
-  top: 0;
+#songChoice {
+  background-image: url('./components/photos/chooseASong.png');
+  background-color: white;
 }
 
-.vector2 {
-  position: absolute;
-  right: 0;
-  top: 0;
+#songChoiceHeader {
+  text-align: center;
 }

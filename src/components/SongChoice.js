@@ -1,9 +1,8 @@
 const SongChoice = () => {
   return (
     <div>
-        <button className="backMainMenu">Back</button>
-        <h1>Choose a song</h1>
-        
+        <button className="menuBackBtn">Back</button>
+        <h1 id='songChoiceHeader' className='title'>Choose a song</h1>
     </div>
   )
 }

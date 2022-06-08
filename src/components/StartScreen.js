@@ -1,20 +1,25 @@
-import React from 'react'
 import Photo from './photos/band.png'
-import Vector1 from './photos/vector1.png'
-import Vector2 from './photos/vector2.png'
 
 const Header = () => {
   return (
     <div>
-      <div className='vector1'> 
-        <img src={ Vector1 } alt='vector1' />
-      </div>
-      <div className='vector2'>
-        <img  src = { Vector2 } alt='vector2' />
-      </div>
-      <img className='band' src={ Photo } alt='Band' />
-      <h1 className='title'>MUSIC<span className='forKids' style={{color: '#FFA723'}}>4KIDS</span></h1>
-      <h1 className='subtitle'>Let's make some music!</h1>
+
+      <img id='band' src={ Photo } alt='Band' />
+
+      <h1 className='title'>MUSIC<span id='forKids' style={{color: '#FFA723'}}>4KIDS</span></h1>
+
+      <h1 className='title'>Let's make some music!</h1>
+
+      <div>
+            <button className="btn" onClick={
+              () => {
+                document.getElementById('start').classList.add('hidden')
+              }
+            }>TUTORIAL</button>
+        </div>
+        <div>
+            <button className="btn">FREE STYLE</button>
+        </div>
     </div>   
   )
 }
