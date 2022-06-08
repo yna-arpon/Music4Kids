@@ -7,23 +7,37 @@ body {
   height: 100vh;
 }
 
-.startScreen {
+* {
+  box-sizing: border-box;
+}
+
+.page {
+  display: flex;
+  background-image: linear-gradient(to bottom right, blue, purple);
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  z-index: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  transition: opacity 0.5s;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#start {
   padding: 50px;
   text-align: center;
   background-color: #fff;
   background-image: linear-gradient(to bottom right, orange, yellow);
-  height: 100vh;
   color: white;
-  min-height: 100%;
-
-  /* Set up proportionate scaling */
-  width: 95%;
-  height: auto;
-
-  /* Set up positioning */
-  position: fixed;
-  top: 0;
-  left: 0;
+  z-index: 2;
 }
 
 .band {
