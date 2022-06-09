@@ -21,7 +21,6 @@ body {
   background-color: white;
   background-repeat: no-repeat;
   background-size: cover;
-  
 
   transition: opacity 0.5s;
 }
@@ -35,7 +34,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Originally in page ^ (might want to add back later) */
+  /* Originally in .page ^ (might want to add back later) */
 
   padding: 50px;
   text-align: center;
@@ -111,3 +110,24 @@ body {
   justify-content: left;
 }
 
+.songLevels {
+  height: 132.76px;
+  width: 300px;
+}
+
+#songContainer {
+  display: grid; 
+  justify-content: center;
+  padding-top: 120px;
+  grid-template-columns: auto auto auto;
+  gap: 50px 200px;
+}
+
+.songs {
+  background: rgba(255, 236, 188, 0.3);
+  padding: 10px 10px;
+  margin: 30px;
+  border-radius: 20px;
+  box-shadow: inset 3px 3px 3px 2px #c3ac74;
+  font-size: 20pt;
+}

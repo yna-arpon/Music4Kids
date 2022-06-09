@@ -11,12 +11,12 @@ const Header = () => {
       <h1 className='title' id='subtitle'>Let's make some music!</h1>
 
       <div>
-            <button className="btn modeOptions" onClick={
-              () => {
-                document.getElementById('start').classList.add('hidden')
-              }
-            }>TUTORIAL</button>
-        </div>
+        <button className="btn modeOptions" onClick={
+          () => {
+            document.getElementById('start').classList.add('hidden')
+          }
+        }>TUTORIAL</button>
+      </div>
         <div>
             <button className="btn modeOptions">FREE STYLE</button>
         </div>
