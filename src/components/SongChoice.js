@@ -1,6 +1,9 @@
 import Beginner from './photos/beginnerHeader.png'
 import Intermediate from './photos/intHeader.png'
 import Master from './photos/masterHeader.png'
+import TwinkleStar from './photos/Twinkle Twinkle Little Star.png'
+import HotCrossBuns from './photos/Hot cross buns.png'
+import MaryLamb from './photos/Mary Lamb.png'
 
 const SongChoice = () => {
   return (
@@ -16,21 +19,18 @@ const SongChoice = () => {
         </div>
 
         <div id='songContainer'>
-            <img className='songLevels' id='beginner' 
-            src={ Beginner } alt='Beginner Songs' />
-            <img className='songLevels' id='intermediate' 
-            src={ Intermediate } alt='Intermediate Songs' />
-            <img className='songLevels' id='Master' 
-            src={ Master } alt='Master Songs' />
-            <button className='btn songs' id='song1'>Twinkle Twinkle Little Star</button>
-            <button className='btn songs' id='song2'>Intermediate Song 1</button>
-            <button className='btn songs' id='song3'>Master Song 1</button>
-            <button className='btn songs' id='song4'>Mary Had A Little Lamb</button>
-            <button className='btn songs' id='song5'>Intermediate Song 2</button>
-            <button className='btn songs' id='song6'>Master Song 2</button>
-            <button className='btn songs' id='song7'>Hot Crossed Buns</button>
-            <button className='btn songs' id='song8'>Intermediate Song 3</button>
-            <button className='btn songs' id='song9'>Intermediate Song 3</button>
+            <img className='songLevels' src={ Beginner } alt='Beginner Songs' />
+            <img className='songLevels' src={ Intermediate } alt='Intermediate Songs' />
+            <img className='songLevels' src={ Master } alt='Master Songs' />
+            <button className='btn song'><img className='songImg' src={ TwinkleStar } alt='Twinkle Twinkle Little Star'/></button>
+            <button className='btn song'><img className='songImg' src={ TwinkleStar } alt='Twinkle Twinkle Little Star'/></button> {/* To be replaced with Int song */}
+            <button className='btn song'><img className='songImg' src={ TwinkleStar } alt='Twinkle Twinkle Little Star'/></button> {/* To be replaced with Master song */}
+            <button className='btn song'><img className='songImg' src={ MaryLamb } alt='Mary Had a Little Lamb'/></button>
+            <button className='btn song'><img className='songImg' src={ MaryLamb } alt='Mary Had a Little Lamb'/></button> {/* To be replaced with Int song */}
+            <button className='btn song'><img className='songImg' src={ MaryLamb } alt='Mary Had a Little Lamb'/></button> {/* To be replaced with Master song */}
+            <button className='btn song'><img className='songImg' src={ HotCrossBuns } alt='Hot Cross Buns'/></button>
+            <button className='btn song'><img className='songImg' src={ HotCrossBuns } alt='Hot Cross Buns'/></button> {/* To be replaced with Int song */}
+            <button className='btn song'><img className='songImg' src={ HotCrossBuns } alt='Hot Cross Buns'/></button> {/* To be replaced with Master song */}
         </div>
     </div>
   )

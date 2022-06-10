@@ -113,14 +113,17 @@ body {
 .songLevels {
   height: 132.76px;
   width: 300px;
+  margin-bottom: 0;
 }
 
 #songContainer {
   display: grid; 
+  justify-items: center;
   justify-content: center;
+  align-content: center;
   padding-top: 120px;
   grid-template-columns: auto auto auto;
-  gap: 50px 200px;
+  gap: 45px 70px;
 }
 
 .songs {
@@ -128,6 +131,17 @@ body {
   padding: 10px 10px;
   margin: 30px;
   border-radius: 20px;
-  box-shadow: inset 3px 3px 3px 2px #c3ac74;
+  box-shadow: 3px 3px 3px 2px #b68815;
   font-size: 20pt;
+}
+
+.song {
+  background: none;
+  border: none;
+  height: 100px;
+}
+
+.songImg {
+  width:363.3px;
+  height: 125px;
 }
