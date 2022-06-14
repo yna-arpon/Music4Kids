@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import Beginner from './photos/beginnerHeader.png'
 import Intermediate from './photos/intHeader.png'
 import Master from './photos/masterHeader.png'
@@ -6,12 +7,14 @@ import HotCrossBuns from './photos/Hot cross buns.png'
 import MaryLamb from './photos/Mary Lamb.png'
 
 const SongChoice = () => {
+  let navigate = useNavigate();
+  
   return (
-    <div className='songChoicePage'>
-
+    <div className='page' id='songChoice'>
         <div id='songChoiceHeader'>
             <div id='songChoiceBack'>
-              <button className='btn menuBackBtn'>BACK</button>
+              <button className='btn menuBackBtn' 
+              onClick={() => {navigate('/')}}>BACK</button>
             </div>
             <div id='songChoiceTitle'>
               <h1 className='title'>CHOOSE A SONG</h1>  
