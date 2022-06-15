@@ -1,19 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import StartScreen from './components/StartScreen'
-import SongChoice from './components/SongChoice'
+import StartScreen from './components/StartScreen';
+import SongChoice from './components/SongChoice';
+import Instruments from './components/Instruments';
 
 function App() {
   return (
     <Router>
-        {/* <div className='page' id='start'>
-            <StartScreen />
-        </div>
-        <div className='page' id='songChoice'>
-            <SongChoice />
-        </ div> */}
       <Routes> 
-        <Route path="/" element={ <StartScreen /> } />
-        <Route path="/TutorialSongChoices" element={ <SongChoice /> } />
+        <Route path="/" element={<StartScreen />} />
+        <Route path="/TutorialSongChoices" element={<SongChoice />} />
+        <Route path='/InstrumentChoices' element={<Instruments />} />
       </Routes>
     </Router>
   );

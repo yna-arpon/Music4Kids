@@ -8,11 +8,11 @@ import MaryLamb from './photos/Mary Lamb.png'
 
 const SongChoice = () => {
   let navigate = useNavigate();
-  
+
   return (
-    <div className='page' id='songChoice'>
+    <div className='page choices'>
         <div id='songChoiceHeader'>
-            <div id='songChoiceBack'>
+            <div>
               <button className='btn menuBackBtn' 
               onClick={() => {navigate('/')}}>BACK</button>
             </div>

@@ -71,7 +71,7 @@ body {
   font-size: 50px;
 }
 
-#songChoice {
+.choices {
   background-image: url('./components/photos/chooseASong.png');
   background-color: white;
 }
@@ -118,15 +118,6 @@ body {
   gap: 45px 70px;
 }
 
-.songs {
-  background: rgba(255, 236, 188, 0.3);
-  padding: 10px 10px;
-  margin: 30px;
-  border-radius: 20px;
-  box-shadow: 3px 3px 3px 2px #b68815;
-  font-size: 20pt;
-}
-
 .song {
   background: none;
   border: none;
@@ -136,4 +127,33 @@ body {
 .songImg {
   width:363.3px;
   height: 125px;
+}
+
+#instrumentChoiceTitle {
+  position:absolute;
+  top: 8%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+}
+
+#instrumentContainer {
+  display: grid; 
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+  padding-top: 100px;
+  grid-template-columns: auto auto;
+  gap: 220px 70px;
+}
+
+.instrument {
+  background: none;
+  border: none;
+  height: 100px;
+}
+
+.instrumentImg {
+  width:300px;
+  height: 293.97px;
 }

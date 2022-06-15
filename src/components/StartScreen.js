@@ -1,4 +1,4 @@
-import { Navigate,useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Photo from './photos/band.png'
 
 const Header = () => {
@@ -16,10 +16,14 @@ const Header = () => {
       <div>
         <button className="btn modeOptions" onClick={() => (
           navigate('/TutorialSongChoices')
-        )}>TUTORIAL</button>
+        )}>
+          TUTORIAL
+        </button>
       </div>
         <div>
-            <button className="btn modeOptions">
+            <button className="btn modeOptions" onClick={() => (
+              navigate('/InstrumentChoices')
+            )}>
               FREE STYLE
             </button>
         </div>
