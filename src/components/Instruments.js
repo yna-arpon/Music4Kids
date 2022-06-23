@@ -18,7 +18,11 @@ const Instruments = () => {
             <h1 className='title'>CHOOSE YOUR INSTRUMENT</h1>  
         </div>
         <div id='instrumentContainer'>
-             <button className='btn instrument'><img className='instrumentImg' src={ Piano } alt='Piano'/></button>
+             <button className='btn instrument'  onClick={() => (
+                navigate('/PianoChords')
+                )}>
+                <img className='instrumentImg' src={ Piano } alt='Piano'/>
+            </button>
              <button className='btn instrument'><img className='instrumentImg' src={ Guitar } alt='Guitar'/></button>
              <button className='btn instrument'><img className='instrumentImg' src={ Drums } alt='Drums'/></button>
              <button className='btn instrument'><img className='instrumentImg' src={ BeatPad } alt='Beat Pad'/></button>
