@@ -1,6 +1,6 @@
 import React from 'react'
 import p5 from 'p5';
-
+import {withRouter} from './withRouter'
 
 class Sketch extends React.Component {
     constructor(props) {
@@ -8,6 +8,17 @@ class Sketch extends React.Component {
         //p5 instance mode requires a reference on the DOM to mount the sketch
         //So we use react's createRef function to give p5 a reference
         this.myRef = React.createRef()
+        this.toChoices=this.toChoices.bind(this);
+        this.toNotes = this.toNotes.bind(this);
+    }
+
+    toChoices() {
+        this.props.navigate('/InstrumentChoices');
+    }
+
+    toNotes() {
+        this.props.navigate('/');
+        // To be changed to a page that leads to piano chords
     }
 
     // This uses p5's instance mode for sketch creation and namespacing
@@ -78,11 +89,19 @@ class Sketch extends React.Component {
     render() {
         return (
             //This div will contain our p5 sketch
-            <div id='pianoChords' className='page' ref={this.myRef}>
+            <div id='pianoNotes' className='page' ref={this.myRef}>
+                <button className='btn pianoBtns' id='choicesBackBtn'
+                    onClick={this.toChoices}>BACK</button>
+                <div className='pianoOptns'>
+                    <button className='btn pianoBtns' 
+                        onClick={this.toNotes}>CHORDS</button> 
+                    {/* To be changed to page that leads to Piano chords */}
+                </div>
+                    
                 
             </div>
         )
     }
 }
 
-export default Sketch
+export default withRouter(Sketch)

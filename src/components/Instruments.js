@@ -19,7 +19,7 @@ const Instruments = () => {
         </div>
         <div id='instrumentContainer'>
              <button className='btn instrument'  onClick={() => (
-                navigate('/PianoChords')
+                navigate('/PianoNotes')
                 )}>
                 <img className='instrumentImg' src={ Piano } alt='Piano'/>
             </button>

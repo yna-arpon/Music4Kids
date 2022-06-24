@@ -159,7 +159,21 @@ body {
   height: 293.97px;
 }
 
-#pianoChords {
+#pianoNotes {
   background-image: url('./components/photos/PianoChordsBG.png');
   background-color: white;
+}
+
+#pianoNoteTitle {
+  display: inline;
+  font-size: 10pt;
+}
+
+.pianoBtns {
+  background: #FF9797;
+  padding: 10px 10px;
+  margin: 30px;
+  border-radius: 20px;
+  box-shadow: inset 3px 3px 3px 2px #d47d7d;
+  font-size: 20pt;
 }
