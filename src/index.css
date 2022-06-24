@@ -158,3 +158,8 @@ body {
   width:300px;
   height: 293.97px;
 }
+
+#pianoChords {
+  background-image: url('./components/photos/PianoChordsBG.png');
+  background-color: white;
+}

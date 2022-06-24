@@ -1,6 +1,7 @@
 import React from 'react'
 import p5 from 'p5';
 
+
 class Sketch extends React.Component {
     constructor(props) {
         super(props)
@@ -18,26 +19,16 @@ class Sketch extends React.Component {
         p.setup = () => {
             p.createCanvas(p.windowWidth,  p.windowHeight);
 
-            // Creates gradient background
-            const leftCol = p.color(255, 151, 151);
-            const rightCol = p.color(185, 255, 96);
-            
-            for(let x = 0; x < p.width; x++) {
-                let n = p.map(x, 0, p.width, 0,1);
-                let newCol = p.lerpColor(leftCol, rightCol, n);
-                p.stroke(newCol);
-                p.line(x, 0, x, p.height);
-            }
-            
+            // List of piano keys in octaves 4 and 5
             whiteKeys = [C4, D4, E4, F4, G4, A4, B4, C5, D5, E5, F5, G5, A5, B5]
             whiteKeys.forEach(createWhiteKey)
 
+            //List of black piano keys
             blackKeys = [C4s, D4s, F4s, G4s, A4s, C5s, D5s, F5s, G5s, A5s];
             blackKeys.forEach(createBlackKey)
-
-            
         }
 
+        // Creates white piano keys
         function createWhiteKey() { 
             let xPos = 0;
 
@@ -54,6 +45,7 @@ class Sketch extends React.Component {
             }
         }
 
+        // Creates black piano keys
         function createBlackKey() {
             let blackKeyWidth = 0.553 * whiteKeyWidth;
             let blackKeyHeight = 0.6197 * whiteKeyHeight; 
@@ -74,12 +66,8 @@ class Sketch extends React.Component {
         }
 
         p.draw = () => {
-            //Loop to create 2 octaves (14 piano keys)
             
         }
-
-        
-        
     }
 
     componentDidMount() {
@@ -90,8 +78,8 @@ class Sketch extends React.Component {
     render() {
         return (
             //This div will contain our p5 sketch
-            <div ref={this.myRef}>
-
+            <div id='pianoChords' className='page' ref={this.myRef}>
+                
             </div>
         )
     }
