@@ -25,7 +25,7 @@ class Sketch extends React.Component {
     Sketch = (p) => {
 
         let whiteKeys, C4, D4, E4, F4, G4, A4, B4, C5, D5, E5, F5, G5, A5, B5, whiteKeyWidth, whiteKeyHeight;
-        let blackKeys, C4s, D4s, F4s, G4s, A4s, C5s, D5s, F5s, G5s, A5s;  
+        let blackKeys, C4s, D4s, F4s, G4s, A4s, C5s, D5s, F5s, G5s, A5s;
 
         p.setup = () => {
             p.createCanvas(p.windowWidth,  p.windowHeight);
@@ -37,6 +37,7 @@ class Sketch extends React.Component {
             //List of black piano keys
             blackKeys = [C4s, D4s, F4s, G4s, A4s, C5s, D5s, F5s, G5s, A5s];
             blackKeys.forEach(createBlackKey)
+
         }
 
         // Creates white piano keys
@@ -44,15 +45,21 @@ class Sketch extends React.Component {
             let xPos = 0;
 
             for(let i = 0; i < 14; i++) {
+
+                // Creates and styles white keys 
                 whiteKeyWidth = p.windowWidth / 14;
-                whiteKeyHeight = p.windowHeight / 2.33;
+                whiteKeyHeight = p.windowHeight / 2.75;
 
                 whiteKeys[i] = p.createButton('');
                 whiteKeys[i].size(whiteKeyWidth, whiteKeyHeight);
                 whiteKeys[i].style('background-color', p.color(255));
+                whiteKeys[i].style('border: 1px solid black')
+                whiteKeys[i].style('border-bottom-left-radius: 10px;')
+                whiteKeys[i].style('border-bottom-right-radius: 10px;')
                 whiteKeys[i].position(xPos, p.windowHeight - whiteKeyHeight);
                 
                 xPos += whiteKeyWidth;
+
             }
         }
 
@@ -63,12 +70,16 @@ class Sketch extends React.Component {
             let xPos = whiteKeyWidth - (blackKeyWidth * 0.5);
 
             for(let i = 0; i < 10; i++) {
+
+                // Creates and styles black keys
                 blackKeys[i] = p.createButton('');
                 blackKeys[i].size(blackKeyWidth, blackKeyHeight);
                 blackKeys[i].style('background-color', p.color(0));
+                blackKeys[i].style('border-bottom-left-radius: 10px;');
+                blackKeys[i].style('border-bottom-right-radius: 10px;');
                 blackKeys[i].position(xPos, p.windowHeight - whiteKeyHeight)
 
-                if (i == 2 || i == 5 || i == 7) {
+                if (i === 2 || i === 5 || i === 7) {
                     xPos += 2 * whiteKeyWidth;
                 } else {
                     xPos += whiteKeyWidth
@@ -89,16 +100,15 @@ class Sketch extends React.Component {
     render() {
         return (
             //This div will contain our p5 sketch
-            <div id='pianoNotes' className='page' ref={this.myRef}>
-                <button className='btn pianoBtns' id='choicesBackBtn'
-                    onClick={this.toChoices}>BACK</button>
-                <div className='pianoOptns'>
-                    <button className='btn pianoBtns' 
+            <div id='pianoPage' className='page' ref={this.myRef}>
+                <div className='pianoHeader'>
+                    <button className='btn pianoBtns' id='choicesBackBtn'
+                        onClick={this.toChoices}>BACK</button>
+                    <h1 className='instrumentTitle' id='pianoNotesTitle'>FREE STYLE PIANO (NOTES)</h1>
+                    <button className='btn pianoBtns' id='chordsBtn'
                         onClick={this.toNotes}>CHORDS</button> 
-                    {/* To be changed to page that leads to Piano chords */}
+                    {/* To be changed to page that leads to Piano chords  */}
                 </div>
-                    
-                
             </div>
         )
     }

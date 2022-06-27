@@ -159,20 +159,41 @@ body {
   height: 293.97px;
 }
 
-#pianoNotes {
+#pianoPage {
   background-image: url('./components/photos/PianoChordsBG.png');
   background-color: white;
 }
 
-#pianoNoteTitle {
-  display: inline;
-  font-size: 10pt;
+.pianoHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#choicesBackBtn  {
+  flex-grow: 0;
+}
+
+#pianoNotesTitle {
+  flex-grow: 1;
+  text-align: center;
+}
+
+#chordsBtn  {
+  flex-grow: 0;
+}
+
+.instrumentTitle {
+  font-size: 33pt;
+  color:white;
+  margin-top: 5px;
 }
 
 .pianoBtns {
   background: #FF9797;
   padding: 10px 10px;
-  margin: 30px;
+  margin: 15px;
   border-radius: 20px;
   box-shadow: inset 3px 3px 3px 2px #d47d7d;
   font-size: 20pt;
