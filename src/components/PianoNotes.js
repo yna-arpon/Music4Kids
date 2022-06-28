@@ -1,8 +1,10 @@
 import React from 'react'
 import p5 from 'p5';
 import {withRouter} from './withRouter'
+import * as Tone from 'tone'
 
 class Sketch extends React.Component {
+
     constructor(props) {
         super(props)
         //p5 instance mode requires a reference on the DOM to mount the sketch
@@ -21,6 +23,7 @@ class Sketch extends React.Component {
         // To be changed to a page that leads to piano chords
     }
 
+
     // This uses p5's instance mode for sketch creation and namespacing
     Sketch = (p) => {
 
@@ -37,7 +40,6 @@ class Sketch extends React.Component {
             //List of black piano keys
             blackKeys = [C4s, D4s, F4s, G4s, A4s, C5s, D5s, F5s, G5s, A5s];
             blackKeys.forEach(createBlackKey)
-
         }
 
         // Creates white piano keys
@@ -86,10 +88,6 @@ class Sketch extends React.Component {
                 }
             }
         }
-
-        p.draw = () => {
-            
-        }
     }
 
     componentDidMount() {
@@ -109,9 +107,29 @@ class Sketch extends React.Component {
                         onClick={this.toNotes}>CHORDS</button> 
                     {/* To be changed to page that leads to Piano chords  */}
                 </div>
+                <div className='noteContainer'>
+                    <button className='btn noteBtn' onClick={C4} >C</button>
+                    <button className='btn noteBtn' onClick={C4} >C#/D♭</button>
+                    <button className='btn noteBtn' onClick={C4} >D</button>
+                    <button className='btn noteBtn' onClick={C4} >D#/E♭</button>
+                    <button className='btn noteBtn' onClick={C4} >E</button>
+                    <button className='btn noteBtn' onClick={C4} >F</button>
+                    <button className='btn noteBtn' onClick={C4} >F#/G♭</button>
+                    <button className='btn noteBtn' onClick={C4} >G</button>
+                    <button className='btn noteBtn' onClick={C4} >G#/A♭</button>
+                    <button className='btn noteBtn' onClick={C4} >A</button>
+                    <button className='btn noteBtn' onClick={C4} >A#/B♭</button>
+                    <button className='btn noteBtn' onClick={C4} >B</button>
+                </div>
             </div>
         )
     }
+}
+
+const synth = new Tone.Synth().toDestination();
+
+function C4() {
+    synth.triggerAttackRelease("C4","8n");
 }
 
 export default withRouter(Sketch)

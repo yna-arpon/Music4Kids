@@ -113,7 +113,6 @@ body {
   display: grid; 
   justify-items: center;
   justify-content: center;
-  align-content: center;
   padding-top: 120px;
   grid-template-columns: auto auto auto;
   gap: 45px 70px;
@@ -142,7 +141,6 @@ body {
   display: grid; 
   justify-items: center;
   justify-content: center;
-  align-content: center;
   padding-top: 100px;
   grid-template-columns: auto auto;
   gap: 220px 70px;
@@ -180,7 +178,7 @@ body {
   text-align: center;
 }
 
-#chordsBtn  {
+#chordsBtn {
   flex-grow: 0;
 }
 
@@ -197,4 +195,25 @@ body {
   border-radius: 20px;
   box-shadow: inset 3px 3px 3px 2px #d47d7d;
   font-size: 20pt;
+}
+
+.noteContainer {
+  display: grid;
+  justify-items: center;
+  justify-content: center;
+  padding-top: 230px;
+  grid-template-columns: auto auto auto auto auto auto;
+  gap: 20px 50px;
+}
+
+.noteBtn {
+  font-size: 40pt;
+  background: rgba(251, 205, 255, 0.75);
+  border: none;
+  margin: 5px;
+  border-radius: 20px;
+  box-shadow: 3px 3px 3px 2px #d47d7d;
+
+  width: 190px;
+  height: 90px;
 }
