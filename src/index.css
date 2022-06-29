@@ -173,6 +173,12 @@ body {
   flex-grow: 0;
 }
 
+#octaveBtn {
+  flex-grow: 0;
+  font-size: 15pt;
+  margin-top: 0;
+}
+
 #pianoNotesTitle {
   flex-grow: 1;
   text-align: center;
@@ -180,6 +186,7 @@ body {
 
 #chordsBtn {
   flex-grow: 0;
+  margin-left: 100px;
 }
 
 .instrumentTitle {
