@@ -41,6 +41,8 @@ class Sketch extends React.Component {
         this.toChoices=this.toChoices.bind(this);
         this.toNotes = this.toNotes.bind(this);
         this.C = this.C.bind(this);
+        this.D = this.D.bind(this);
+        this.E = this.E.bind(this);
     } 
 
     toChoices() {
@@ -56,36 +58,40 @@ class Sketch extends React.Component {
     // This uses p5's instance mode for sketch creation and namespacing
     Sketch = (p) => {
 
-        let whiteKeys, C4, D4, E4, F4, G4, A4, B4, C5, D5, E5, F5, G5, A5, B5, whiteKeyWidth, whiteKeyHeight;
-        let blackKeys, C4s, D4s, F4s, G4s, A4s, C5s, D5s, F5s, G5s, A5s;
+        let whiteKeys, C4Key, D4Key, E4Key, F4Key, G4Key, A4Key, B4Key, C5Key, D5Key, E5Key, F5Key, G5Key, A5Key, B5Key, whiteKeyWidth, whiteKeyHeight;
+        let blackKeys, C4KeySharp, D4KeySharp, F4KeySharp, G4KeySharp, A4KeySharp, C5KeySharp, D5KeySharp, F5KeySharp, G5KeySharp, A5KeySharp;
+        let whiteKeyState;
 
         p.setup = () => {
             p.createCanvas(p.windowWidth,  p.windowHeight);
 
-            // List of piano keys in octaves 4 and 5
-            whiteKeys = [C4, D4, E4, F4, G4, A4, B4, C5, D5, E5, F5, G5, A5, B5];
+            // List of piano keys in octaves 4 and 5Key
+            whiteKeys = [C4Key, D4Key, E4Key, F4Key, G4Key, A4Key, B4Key, C5Key, D5Key, E5Key, F5Key, G5Key, A5Key, B5Key];
             whiteKeys.forEach(createWhiteKey);
 
             //List of black piano keys
-            blackKeys = [C4s, D4s, F4s, G4s, A4s, C5s, D5s, F5s, G5s, A5s];
+            blackKeys = [C4KeySharp, D4KeySharp, F4KeySharp, G4KeySharp, A4KeySharp, C5KeySharp, D5KeySharp, F5KeySharp, G5KeySharp, A5KeySharp];
             blackKeys.forEach(createBlackKey);
         }
 
         p.draw = () => {
             const {C4} = this.state;
             const {C5} = this.state;
+            const {D4} = this.state;
+            const {D5} = this.state;
+            const {E4} = this.state;
+            const {E5} = this.state;
+            const {F4} = this.state;
+            const {F5} = this.state;
+            const {G4} = this.state;
+            const {G5} = this.state;
+            const {A4} = this.state;
+            const {A5} = this.state;
+            const {B4} = this.state;
+            const {B5} = this.state;
 
-            if (C4) { 
-                changeWhiteKey(0);
-            } else {
-                whiteKeys[0].style('background-color', p.color(255));
-            }
-
-            if (C5) { 
-                changeWhiteKey(7);
-            } else {
-                whiteKeys[7].style('background-color', p.color(255));
-            }
+            whiteKeyState = [C4, D4, E4, F4, G4, A4, B4, C5, D5, E5, F5, G5, A5, B5];       
+            whiteKeyState.forEach(checkState);
         }
 
         // Creates white piano keys
@@ -134,9 +140,16 @@ class Sketch extends React.Component {
                 }
             }
         }
-
-        function changeWhiteKey(key) {
-            whiteKeys[key].style('background-color', p.color(255, 249, 192));
+        // Checks the state of each white key     
+        function checkState() {
+            for(let i = 0; i < 14; i++) {
+                // If the state of the white true -> changes colour to yellow, else -> keeps it white
+                if (whiteKeyState[i]) {
+                    whiteKeys[i].style('background-color', p.color(255, 249, 192));
+                } else {
+                    whiteKeys[i].style('background-color', p.color(255))
+                }
+            }
         }
     }
 
@@ -146,8 +159,7 @@ class Sketch extends React.Component {
     }
 
     C() {
-        // To be abstracted to a different file containing only tone.js notes 
-        const synth = new Tone.Synth().toDestination();
+        const synth = new Tone.PolySynth().toDestination();
         const {octave} = this.state;
 
         if (octave == 4) {
@@ -157,6 +169,36 @@ class Sketch extends React.Component {
         } else {
             synth.triggerAttackRelease("C5","8n");
             this.setState({C5: true});
+        }
+    }
+
+    D() {
+ 
+        const synth = new Tone.PolySynth().toDestination();
+        const {octave} = this.state;
+
+        if (octave == 4) {
+            synth.triggerAttackRelease("D4","8n");
+            // This function will only change the state
+            this.setState({D4: true});
+        } else {
+            synth.triggerAttackRelease("D5","8n");
+            this.setState({D5: true});
+        }
+    }
+
+    E() {
+ 
+        const synth = new Tone.PolySynth().toDestination();
+        const {octave} = this.state;
+
+        if (octave == 4) {
+            synth.triggerAttackRelease("E4","8n");
+            // This function will only change the state
+            this.setState({E4: true});
+        } else {
+            synth.triggerAttackRelease("E5","8n");
+            this.setState({E5: true});
         }
     }
 
@@ -203,17 +245,35 @@ class Sketch extends React.Component {
                             }
                         }}>C</button>
 
-                    <button className='btn noteBtn' onClick={this.C4}>C#/D♭</button>
-                    <button className='btn noteBtn' onClick={this.C4}>D</button>
-                    <button className='btn noteBtn' onClick={this.C4}>D#/E♭</button>
-                    <button className='btn noteBtn' onClick={this.C4}>E</button>
-                    <button className='btn noteBtn' onClick={this.C4}>F</button>
-                    <button className='btn noteBtn' onClick={this.C4}>F#/G♭</button>
-                    <button className='btn noteBtn' onClick={this.C4}>G</button>
-                    <button className='btn noteBtn' onClick={this.C4}>G#/A♭</button>
-                    <button className='btn noteBtn' onClick={this.C4}>A</button>
-                    <button className='btn noteBtn' onClick={this.C4}>A#/B♭</button>
-                    <button className='btn noteBtn' onClick={this.C4}>B</button>
+                    <button className='btn noteBtn' >C#/D♭</button>
+
+                    <button className='btn noteBtn' onMouseDown={() => {this.D()}}
+                        onMouseUp={() => {
+                            if (octave == 4) {
+                                this.setState({D4: false})
+                            } else {
+                                this.setState({D5: false})
+                            }
+                        }}>D</button>
+
+                    <button className='btn noteBtn' >D#/E♭</button>
+
+                    <button className='btn noteBtn'onMouseDown={() => {this.E()}}
+                        onMouseUp={() => {
+                            if (octave == 4) {
+                                this.setState({E4: false})
+                            } else {
+                                this.setState({E5: false})
+                            }
+                        }}>E</button>
+
+                    <button className='btn noteBtn' >F</button>
+                    <button className='btn noteBtn' >F#/G♭</button>
+                    <button className='btn noteBtn' >G</button>
+                    <button className='btn noteBtn' >G#/A♭</button>
+                    <button className='btn noteBtn' >A</button>
+                    <button className='btn noteBtn' >A#/B♭</button>
+                    <button className='btn noteBtn' >B</button>
                 </div>
             </div>
         )
