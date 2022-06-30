@@ -1,6 +1,6 @@
 import React from 'react'
 import p5 from 'p5';
-import {withRouter} from './withRouter'
+import { withRouter } from './withRouter'
 import * as Tone from 'tone'
 
 class Sketch extends React.Component {
@@ -162,13 +162,20 @@ class Sketch extends React.Component {
         const synth = new Tone.PolySynth().toDestination();
         const {octave} = this.state;
 
-        if (octave == 4) {
-            synth.triggerAttackRelease("C4","8n");
-            // This function will only change the state
+        if (octave === 4) {
+            // Changes state of C4 to change color of key 
             this.setState({C4: true});
+
+
+            //const C4 = new Tone.Player('https://raw.githubusercontent.com/yna-arpon/Music4Kids/main/src/components/24-piano-keys/C4.mp3').toDestination();
+            //Tone.loaded().then(() => {
+            //    C4.start()
+            // })
+
+            synth.triggerAttackRelease("C4","8n")
         } else {
-            synth.triggerAttackRelease("C5","8n");
             this.setState({C5: true});
+            synth.triggerAttackRelease("C5","8n")
         }
     }
 
@@ -177,7 +184,7 @@ class Sketch extends React.Component {
         const synth = new Tone.PolySynth().toDestination();
         const {octave} = this.state;
 
-        if (octave == 4) {
+        if (octave === 4) {
             synth.triggerAttackRelease("D4","8n");
             // This function will only change the state
             this.setState({D4: true});
@@ -192,7 +199,7 @@ class Sketch extends React.Component {
         const synth = new Tone.PolySynth().toDestination();
         const {octave} = this.state;
 
-        if (octave == 4) {
+        if (octave === 4) {
             synth.triggerAttackRelease("E4","8n");
             // This function will only change the state
             this.setState({E4: true});
@@ -216,7 +223,7 @@ class Sketch extends React.Component {
                     
                     <button className='btn pianoBtns' id='octaveBtn' 
                         onClick={() => {
-                            if (octave == 4) {
+                            if (octave === 4) {
                                 this.setState({octave: 5});
                                 this.setState({octaveTitle: 'Octave 5'});
                             } else {
@@ -238,7 +245,7 @@ class Sketch extends React.Component {
                     <button className='btn noteBtn' 
                         onMouseDown={() => {this.C()}}
                         onMouseUp={() => {
-                            if (octave == 4) {
+                            if (octave === 4) {
                                 this.setState({C4: false})
                             } else {
                                 this.setState({C5: false})
@@ -249,7 +256,7 @@ class Sketch extends React.Component {
 
                     <button className='btn noteBtn' onMouseDown={() => {this.D()}}
                         onMouseUp={() => {
-                            if (octave == 4) {
+                            if (octave === 4) {
                                 this.setState({D4: false})
                             } else {
                                 this.setState({D5: false})
@@ -260,7 +267,7 @@ class Sketch extends React.Component {
 
                     <button className='btn noteBtn'onMouseDown={() => {this.E()}}
                         onMouseUp={() => {
-                            if (octave == 4) {
+                            if (octave === 4) {
                                 this.setState({E4: false})
                             } else {
                                 this.setState({E5: false})
