@@ -44,6 +44,7 @@ export function playD5() {
 }
 
 export function playD4s() {
+    console.log('playing d4 sharp')
     const D4sNote = new Tone.Player('https://raw.githubusercontent.com/yna-arpon/Music4Kids/main/src/components/24-piano-keys/D4s_trim.mp3').toDestination();
     Tone.loaded().then(() => {
         D4sNote.start()

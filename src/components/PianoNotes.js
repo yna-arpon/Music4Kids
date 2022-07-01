@@ -64,6 +64,13 @@ class Sketch extends React.Component {
         this.D = this.D.bind(this);
         this.Ds = this.Ds.bind(this);
         this.E = this.E.bind(this);
+        this.F = this.F.bind(this);
+        this.Fs = this.Fs.bind(this);
+        this.G = this.G.bind(this);
+        this.Gs = this.Gs.bind(this);
+        this.A = this.A.bind(this);
+        this.As = this.As.bind(this);
+        this.B = this.B.bind(this);
     } 
 
     toChoices() {
@@ -219,6 +226,7 @@ class Sketch extends React.Component {
             playD5();
         }
     }
+
     // Not working : to be fixed
     Ds() {
         const {octave} = this.state;
@@ -228,6 +236,7 @@ class Sketch extends React.Component {
             playD4s();
         } else {
             this.setState({D5s: true});
+            playD5s();
         }
     }
 
@@ -240,6 +249,97 @@ class Sketch extends React.Component {
         } else {
             this.setState({E5: true});
             playE5();
+        }
+    }
+
+    F() {
+        const {octave} = this.state;
+
+        if (octave === 4) {
+            this.setState({F4: true});
+            playF4();
+        } else {
+            console.log('no audio file for F5 yet')
+            this.setState({F5: true});
+            // playF5();
+        }
+    }
+
+    Fs() {
+        const {octave} = this.state;
+
+        if (octave === 4) {
+            this.setState({F4s: true});
+            playF4s();
+        } else {
+            console.log('no audio file for F5s yet')
+            this.setState({F5s: true});
+            // playF5s();
+        }
+    }
+
+    G() {
+        const {octave} = this.state;
+
+        if (octave === 4) {
+            this.setState({G4: true});
+            playG4();
+        } else {
+            console.log('no audio file for G5 yet')
+            this.setState({G5: true});
+            // playG5();
+        }
+    }
+
+    Gs() {
+        const {octave} = this.state;
+
+        if (octave === 4) {
+            this.setState({G4s: true});
+            playG4s();
+        } else {
+            console.log('no audio file for G5s yet')
+            this.setState({G5s: true});
+            // playG5s();
+        }
+    }
+
+    A() {
+        const {octave} = this.state;
+
+        if (octave === 4) {
+            this.setState({A4: true});
+            playA4();
+        } else {
+            console.log('no audio file for A5 yet')
+            this.setState({A5: true});
+            // playA5();
+        }
+    }
+
+    As() {
+        const {octave} = this.state;
+
+        if (octave === 4) {
+            this.setState({A4s: true});
+            playA4s();
+        } else {
+            console.log('no audio file for A5s yet')
+            this.setState({A5s: true});
+            // playA5S();
+        }
+    }
+
+    B() {
+        const {octave} = this.state;
+
+        if (octave === 4) {
+            this.setState({B4: true});
+            playB4();
+        } else {
+            console.log('no audio file for B5 yet')
+            this.setState({B5: true});
+            // playB5();
         }
     }
 
@@ -295,7 +395,8 @@ class Sketch extends React.Component {
                             }
                     }} >C#/D♭</button>
 
-                    <button className='btn noteBtn' onMouseDown={() => {this.D()}}
+                    <button className='btn noteBtn' 
+                        onMouseDown={() => {this.D()}}
                         onMouseUp={() => {
                             if (octave === 4) {
                                 this.setState({D4: false})
@@ -304,9 +405,18 @@ class Sketch extends React.Component {
                             }
                         }}>D</button>
 
-                    <button className='btn noteBtn' >D#/E♭</button>
+                    <button className='btn noteBtn' 
+                        onMouseDown={() => {this.Ds()}}
+                        onMouseUp={() => {
+                            if (octave === 4) {
+                                this.setState({D4s: false})
+                            } else {
+                                this.setState({D5s: false})
+                            }
+                        }}>D#/E♭</button>
 
-                    <button className='btn noteBtn'onMouseDown={() => {this.E()}}
+                    <button className='btn noteBtn'
+                        onMouseDown={() => {this.E()}}
                         onMouseUp={() => {
                             if (octave === 4) {
                                 this.setState({E4: false})
@@ -315,13 +425,74 @@ class Sketch extends React.Component {
                             }
                         }}>E</button>
 
-                    <button className='btn noteBtn' >F</button>
-                    <button className='btn noteBtn' >F#/G♭</button>
-                    <button className='btn noteBtn' >G</button>
-                    <button className='btn noteBtn' >G#/A♭</button>
-                    <button className='btn noteBtn' >A</button>
-                    <button className='btn noteBtn' >A#/B♭</button>
-                    <button className='btn noteBtn' >B</button>
+                    <button className='btn noteBtn'
+                        onMouseDown={() => {this.F()}}
+                        onMouseUp={() => {
+                            if (octave === 4) {
+                                this.setState({F4: false})
+                            } else {
+                                this.setState({F5: false})
+                            }
+                        }} >F</button>
+
+                    <button className='btn noteBtn' 
+                        onMouseDown={() => {this.Fs()}}
+                        onMouseUp={() => {
+                            if (octave === 4) {
+                                this.setState({F4s: false})
+                            } else {
+                                this.setState({F5s: false})
+                            }
+                    }}>F#/G♭</button>
+
+                    <button className='btn noteBtn' 
+                        onMouseDown={() => {this.G()}}
+                        onMouseUp={() => {
+                            if (octave === 4) {
+                                this.setState({G4: false})
+                            } else {
+                                this.setState({G5: false})
+                            }
+                    }}>G</button>
+
+                    <button className='btn noteBtn' 
+                        onMouseDown={() => {this.Gs()}}
+                        onMouseUp={() => {
+                            if (octave === 4) {
+                                this.setState({G4s: false})
+                            } else {
+                                this.setState({G5s: false})
+                            }
+                    }}>G#/A♭</button>
+
+                    <button className='btn noteBtn'
+                        onMouseDown={() => {this.A()}}
+                        onMouseUp={() => {
+                            if (octave === 4) {
+                                this.setState({A4: false})
+                            } else {
+                                this.setState({A5: false})
+                            }
+                    }}>A</button>
+
+                    <button className='btn noteBtn'
+                        onMouseDown={() => {this.As()}}
+                        onMouseUp={() => {
+                            if (octave === 4) {
+                                this.setState({A4s: false})
+                            } else {
+                                this.setState({A5s: false})
+                            }
+                    }}>A#/B♭</button>
+                    <button className='btn noteBtn'
+                        onMouseDown={() => {this.B()}}
+                        onMouseUp={() => {
+                            if (octave === 4) {
+                                this.setState({B4: false})
+                            } else {
+                                this.setState({B5: false})
+                            }
+                    }}>B</button>
                 </div>
             </div>
         )
