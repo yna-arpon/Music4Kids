@@ -2,6 +2,25 @@ import React from 'react'
 import p5 from 'p5';
 import { withRouter } from './withRouter'
 import * as Tone from 'tone'
+import {
+    playC4,
+    playC5,
+    playC4s,
+    playC5s,
+    playD4,
+    playD5,
+    playD4s,
+    playD5s,
+    playE4,
+    playE5,
+    playF4,
+    playF4s,
+    playG4,
+    playG4s,
+    playA4,
+    playA4s,
+    playB4
+} from './TonePianoNotes'
 
 class Sketch extends React.Component {
 
@@ -39,9 +58,11 @@ class Sketch extends React.Component {
         //So we use react's createRef function to give p5 a reference
         this.myRef = React.createRef()
         this.toChoices=this.toChoices.bind(this);
-        this.toNotes = this.toNotes.bind(this);
+        this.toChords = this.toChords.bind(this);
         this.C = this.C.bind(this);
+        this.Cs = this.Cs.bind(this);
         this.D = this.D.bind(this);
+        this.Ds = this.Ds.bind(this);
         this.E = this.E.bind(this);
     } 
 
@@ -49,7 +70,7 @@ class Sketch extends React.Component {
         this.props.navigate('/InstrumentChoices');
     }
 
-    toNotes() {
+    toChords() {
         this.props.navigate('/');
         // To be changed to a page that leads to piano chords
     }
@@ -60,7 +81,7 @@ class Sketch extends React.Component {
 
         let whiteKeys, C4Key, D4Key, E4Key, F4Key, G4Key, A4Key, B4Key, C5Key, D5Key, E5Key, F5Key, G5Key, A5Key, B5Key, whiteKeyWidth, whiteKeyHeight;
         let blackKeys, C4KeySharp, D4KeySharp, F4KeySharp, G4KeySharp, A4KeySharp, C5KeySharp, D5KeySharp, F5KeySharp, G5KeySharp, A5KeySharp;
-        let whiteKeyState;
+        let whiteKeyState, blackKeyState;
 
         p.setup = () => {
             p.createCanvas(p.windowWidth,  p.windowHeight);
@@ -89,9 +110,13 @@ class Sketch extends React.Component {
             const {A5} = this.state;
             const {B4} = this.state;
             const {B5} = this.state;
+            const {C4s} = this.state;
+            const {C5s} = this.state;
 
             whiteKeyState = [C4, D4, E4, F4, G4, A4, B4, C5, D5, E5, F5, G5, A5, B5];       
             whiteKeyState.forEach(checkState);
+
+
         }
 
         // Creates white piano keys
@@ -159,56 +184,64 @@ class Sketch extends React.Component {
     }
 
     C() {
-        const synth = new Tone.PolySynth().toDestination();
         const {octave} = this.state;
 
         if (octave === 4) {
-            // Changes state of C4 to change color of key 
             this.setState({C4: true});
-
-
-            //const C4 = new Tone.Player('https://raw.githubusercontent.com/yna-arpon/Music4Kids/main/src/components/24-piano-keys/C4.mp3').toDestination();
-            //Tone.loaded().then(() => {
-            //    C4.start()
-            // })
-
-            synth.triggerAttackRelease("C4","8n")
+            playC4();
         } else {
             this.setState({C5: true});
-            synth.triggerAttackRelease("C5","8n")
+            playC5();
         }
     }
 
-    D() {
- 
-        const synth = new Tone.PolySynth().toDestination();
+    Cs() {
         const {octave} = this.state;
 
         if (octave === 4) {
-            synth.triggerAttackRelease("D4","8n");
-            // This function will only change the state
-            this.setState({D4: true});
+            this.setState({C4s: true});
+            playC4s();
         } else {
-            synth.triggerAttackRelease("D5","8n");
+            this.setState({C5s: true});
+            playC5s();
+        }
+    }
+
+
+    D() {
+        const {octave} = this.state;
+
+        if (octave === 4) {
+            this.setState({D4: true});
+            playD4();
+        } else {
             this.setState({D5: true});
+            playD5();
+        }
+    }
+    // Not working : to be fixed
+    Ds() {
+        const {octave} = this.state;
+
+        if (octave === 4) {
+            this.setState({D4s: true});
+            playD4s();
+        } else {
+            this.setState({D5s: true});
         }
     }
 
     E() {
- 
-        const synth = new Tone.PolySynth().toDestination();
         const {octave} = this.state;
 
         if (octave === 4) {
-            synth.triggerAttackRelease("E4","8n");
-            // This function will only change the state
             this.setState({E4: true});
+            playE4();
         } else {
-            synth.triggerAttackRelease("E5","8n");
             this.setState({E5: true});
+            playE5();
         }
     }
-
 
     render() {
         const {octave} = this.state;
@@ -252,7 +285,15 @@ class Sketch extends React.Component {
                             }
                         }}>C</button>
 
-                    <button className='btn noteBtn' >C#/D♭</button>
+                    <button className='btn noteBtn'
+                        onMouseDown={() => {this.Cs()}}
+                        onMouseUp={() => {
+                            if (octave === 4) {
+                                this.setState({C4s: false})
+                            } else {
+                                this.setState({C5s: false})
+                            }
+                    }} >C#/D♭</button>
 
                     <button className='btn noteBtn' onMouseDown={() => {this.D()}}
                         onMouseUp={() => {
