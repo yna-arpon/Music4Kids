@@ -1,7 +1,6 @@
 import React from 'react'
 import p5 from 'p5';
 import { withRouter } from './withRouter'
-import * as Tone from 'tone'
 import {
     playC4,
     playC5,
@@ -223,9 +222,15 @@ class Sketch extends React.Component {
         if (octave === 4) {
             this.setState({C4: true});
             playC4();
+            setTimeout(() => {
+                this.setState({C4: false})
+                } , 1890);
         } else {
             this.setState({C5: true});
             playC5();
+            setTimeout(() => {
+                this.setState({C5: false})
+                } , 1890);
         }
     }
 
@@ -235,9 +240,15 @@ class Sketch extends React.Component {
         if (octave === 4) {
             this.setState({C4s: true});
             playC4s();
+            setTimeout(() => {
+                this.setState({C4s: false})
+                } , 1890)
         } else {
             this.setState({C5s: true});
             playC5s();
+            setTimeout(() => {
+                this.setState({C5s: false})
+                } , 1890)
         }
     }
 
@@ -248,22 +259,33 @@ class Sketch extends React.Component {
         if (octave === 4) {
             this.setState({D4: true});
             playD4();
+            setTimeout(() => {
+                this.setState({D4: false})
+                } , 1890)
         } else {
             this.setState({D5: true});
             playD5();
+            setTimeout(() => {
+                this.setState({D5: false})
+                } , 1890)
         }
     }
 
-    // Not working : to be fixed
     Ds() {
         const {octave} = this.state;
 
         if (octave === 4) {
             this.setState({D4s: true});
             playD4s();
+            setTimeout(() => {
+                this.setState({D4s: false})
+                } , 1890)
         } else {
             this.setState({D5s: true});
             playD5s();
+            setTimeout(() => {
+                this.setState({D5s: false})
+                } , 1890)
         }
     }
 
@@ -273,9 +295,15 @@ class Sketch extends React.Component {
         if (octave === 4) {
             this.setState({E4: true});
             playE4();
+            setTimeout(() => {
+                this.setState({E4: false})
+                } , 1890)
         } else {
             this.setState({E5: true});
             playE5();
+            setTimeout(() => {
+                this.setState({E5: false})
+                } , 1890)
         }
     }
 
@@ -285,9 +313,15 @@ class Sketch extends React.Component {
         if (octave === 4) {
             this.setState({F4: true});
             playF4();
+            setTimeout(() => {
+                this.setState({F4: false})
+                } , 1890)
         } else {
             this.setState({F5: true});
             playF5();
+            setTimeout(() => {
+                this.setState({F5: false})
+                } , 1890)
         }
     }
 
@@ -297,9 +331,15 @@ class Sketch extends React.Component {
         if (octave === 4) {
             this.setState({F4s: true});
             playF4s();
+            setTimeout(() => {
+                this.setState({F4s: false})
+                } , 1890)
         } else {
             this.setState({F5s: true});
             playF5s();
+            setTimeout(() => {
+                this.setState({F5s: false})
+                } , 1890)
         }
     }
 
@@ -309,9 +349,15 @@ class Sketch extends React.Component {
         if (octave === 4) {
             this.setState({G4: true});
             playG4();
+            setTimeout(() => {
+                this.setState({G4: false})
+                } , 1890)
         } else {
             this.setState({G5: true});
             playG5();
+            setTimeout(() => {
+                this.setState({G5: false})
+                } , 1890)
         }
     }
 
@@ -321,9 +367,15 @@ class Sketch extends React.Component {
         if (octave === 4) {
             this.setState({G4s: true});
             playG4s();
+            setTimeout(() => {
+                this.setState({G4s: false})
+                } , 1890)
         } else {
             this.setState({G5s: true});
             playG5s();
+            setTimeout(() => {
+                this.setState({G5s: false})
+                } , 1890)
         }
     }
 
@@ -333,9 +385,15 @@ class Sketch extends React.Component {
         if (octave === 4) {
             this.setState({A4: true});
             playA4();
+            setTimeout(() => {
+                this.setState({A4: false})
+                } , 1890)
         } else {
             this.setState({A5: true});
             playA5();
+            setTimeout(() => {
+                this.setState({A5: false})
+                } , 1890)
         }
     }
 
@@ -345,9 +403,15 @@ class Sketch extends React.Component {
         if (octave === 4) {
             this.setState({A4s: true});
             playA4s();
+            setTimeout(() => {
+                this.setState({A4s: false})
+                } , 1890)
         } else {
             this.setState({A5s: true});
             playA5s();
+            setTimeout(() => {
+                this.setState({A5s: false})
+                } , 1890)
         }
     }
 
@@ -357,9 +421,15 @@ class Sketch extends React.Component {
         if (octave === 4) {
             this.setState({B4: true});
             playB4();
+            setTimeout(() => {
+                this.setState({B4: false})
+                } , 1890)
         } else {
             this.setState({B5: true});
             playB5();
+            setTimeout(() => {
+                this.setState({B5: false})
+                } , 1890)
         }
     }
 
@@ -396,123 +466,39 @@ class Sketch extends React.Component {
 
                 <div className='noteContainer'>
                     <button className='btn noteBtn' 
-                        onMouseDown={() => {this.C()}}
-                        onMouseUp={() => {
-                            if (octave === 4) {
-                                this.setState({C4: false})
-                            } else {
-                                this.setState({C5: false})
-                            }
-                        }}>C</button>
+                        onClick={() => {this.C()}}>C</button>
 
                     <button className='btn noteBtn'
-                        onMouseDown={() => {this.Cs()}}
-                        onMouseUp={() => {
-                            if (octave === 4) {
-                                this.setState({C4s: false})
-                            } else {
-                                this.setState({C5s: false})
-                            }
-                        }}>C#/D♭</button>
+                        onClick={() => {this.Cs()}}>C#/D♭</button>
 
                     <button className='btn noteBtn' 
-                        onMouseDown={() => {this.D()}}
-                        onMouseUp={() => {
-                            if (octave === 4) {
-                                this.setState({D4: false})
-                            } else {
-                                this.setState({D5: false})
-                            }
-                        }}>D</button>
+                        onClick={() => {this.D()}}>D</button>
 
                     <button className='btn noteBtn' 
-                        onMouseDown={() => {this.Ds()}}
-                        onMouseUp={() => {
-                            if (octave === 4) {
-                                this.setState({D4s: false})
-                            } else {
-                                this.setState({D5s: false})
-                            }
-                        }}>D#/E♭</button>
+                        onClick={() => {this.Ds()}}>D#/E♭</button>
 
                     <button className='btn noteBtn'
-                        onMouseDown={() => {this.E()}}
-                        onMouseUp={() => {
-                            if (octave === 4) {
-                                this.setState({E4: false})
-                            } else {
-                                this.setState({E5: false})
-                            }
-                        }}>E</button>
+                        onClick={() => {this.E()}}>E</button>
 
                     <button className='btn noteBtn'
-                        onMouseDown={() => {this.F()}}
-                        onMouseUp={() => {
-                            if (octave === 4) {
-                                this.setState({F4: false})
-                            } else {
-                                this.setState({F5: false})
-                            }
-                        }} >F</button>
+                        onClick={() => {this.F()}}>F</button>
 
                     <button className='btn noteBtn' 
-                        onMouseDown={() => {this.Fs()}}
-                        onMouseUp={() => {
-                            if (octave === 4) {
-                                this.setState({F4s: false})
-                            } else {
-                                this.setState({F5s: false})
-                            }
-                    }}>F#/G♭</button>
+                        onClick={() => {this.Fs()}}>F#/G♭</button>
 
                     <button className='btn noteBtn' 
-                        onMouseDown={() => {this.G()}}
-                        onMouseUp={() => {
-                            if (octave === 4) {
-                                this.setState({G4: false})
-                            } else {
-                                this.setState({G5: false})
-                            }
-                    }}>G</button>
+                        onClick={() => {this.G()}}>G</button>
 
                     <button className='btn noteBtn' 
-                        onMouseDown={() => {this.Gs()}}
-                        onMouseUp={() => {
-                            if (octave === 4) {
-                                this.setState({G4s: false})
-                            } else {
-                                this.setState({G5s: false})
-                            }
-                    }}>G#/A♭</button>
+                        onClick={() => {this.Gs()}}>G#/A♭</button>
 
                     <button className='btn noteBtn'
-                        onMouseDown={() => {this.A()}}
-                        onMouseUp={() => {
-                            if (octave === 4) {
-                                this.setState({A4: false})
-                            } else {
-                                this.setState({A5: false})
-                            }
-                    }}>A</button>
+                        onClick={() => {this.A()}}>A</button>
 
                     <button className='btn noteBtn'
-                        onMouseDown={() => {this.As()}}
-                        onMouseUp={() => {
-                            if (octave === 4) {
-                                this.setState({A4s: false})
-                            } else {
-                                this.setState({A5s: false})
-                            }
-                    }}>A#/B♭</button>
+                        onClick={() => {this.As()}}>A#/B♭</button>
                     <button className='btn noteBtn'
-                        onMouseDown={() => {this.B()}}
-                        onMouseUp={() => {
-                            if (octave === 4) {
-                                this.setState({B4: false})
-                            } else {
-                                this.setState({B5: false})
-                            }
-                    }}>B</button>
+                        onClick={() => {this.B()}}>B</button>
                 </div>
             </div>
         )
