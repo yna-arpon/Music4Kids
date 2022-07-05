@@ -118,11 +118,21 @@ class Sketch extends React.Component {
             const {B4} = this.state;
             const {B5} = this.state;
             const {C4s} = this.state;
+            const {D4s} = this.state;
+            const {F4s} = this.state;
+            const {G4s} = this.state;
+            const {A4s} = this.state;
             const {C5s} = this.state;
+            const {D5s} = this.state;
+            const {F5s} = this.state;
+            const {G5s} = this.state;
+            const {A5s} = this.state;
 
             whiteKeyState = [C4, D4, E4, F4, G4, A4, B4, C5, D5, E5, F5, G5, A5, B5];       
-            whiteKeyState.forEach(checkState);
-
+            whiteKeyState.forEach(checkWhiteKeyState);
+            
+            blackKeyState = [C4s, D4s, F4s, G4s, A4s, C5s, D5s, F5s, G5s, A5s];
+            blackKeyState.forEach(checkBlackKeyState);
 
         }
 
@@ -173,13 +183,23 @@ class Sketch extends React.Component {
             }
         }
         // Checks the state of each white key     
-        function checkState() {
+        function checkWhiteKeyState() {
             for(let i = 0; i < 14; i++) {
                 // If the state of the white true -> changes colour to yellow, else -> keeps it white
                 if (whiteKeyState[i]) {
                     whiteKeys[i].style('background-color', p.color(255, 249, 192));
                 } else {
                     whiteKeys[i].style('background-color', p.color(255))
+                }
+            }
+        }
+
+        function checkBlackKeyState() {
+            for(let i = 0; i < 10; i++) {
+                if (blackKeyState[i]) {
+                    blackKeys[i].style('background-color', p.color(255, 249, 192));
+                } else {
+                    blackKeys[i].style('background-color', p.color(0));
                 }
             }
         }
@@ -393,7 +413,7 @@ class Sketch extends React.Component {
                             } else {
                                 this.setState({C5s: false})
                             }
-                    }} >C#/D♭</button>
+                        }}>C#/D♭</button>
 
                     <button className='btn noteBtn' 
                         onMouseDown={() => {this.D()}}
