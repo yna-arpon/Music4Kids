@@ -15,11 +15,18 @@ import {
     playE5,
     playF4,
     playF4s,
+    playF5,
+    playF5s,
     playG4,
     playG4s,
+    playG5,
+    playG5s,
     playA4,
     playA4s,
-    playB4
+    playA5,
+    playA5s,
+    playB4,
+    playB5
 } from './TonePianoNotes'
 
 class Sketch extends React.Component {
@@ -279,9 +286,8 @@ class Sketch extends React.Component {
             this.setState({F4: true});
             playF4();
         } else {
-            console.log('no audio file for F5 yet')
             this.setState({F5: true});
-            // playF5();
+            playF5();
         }
     }
 
@@ -292,9 +298,8 @@ class Sketch extends React.Component {
             this.setState({F4s: true});
             playF4s();
         } else {
-            console.log('no audio file for F5s yet')
             this.setState({F5s: true});
-            // playF5s();
+            playF5s();
         }
     }
 
@@ -305,9 +310,8 @@ class Sketch extends React.Component {
             this.setState({G4: true});
             playG4();
         } else {
-            console.log('no audio file for G5 yet')
             this.setState({G5: true});
-            // playG5();
+            playG5();
         }
     }
 
@@ -318,9 +322,8 @@ class Sketch extends React.Component {
             this.setState({G4s: true});
             playG4s();
         } else {
-            console.log('no audio file for G5s yet')
             this.setState({G5s: true});
-            // playG5s();
+            playG5s();
         }
     }
 
@@ -331,9 +334,8 @@ class Sketch extends React.Component {
             this.setState({A4: true});
             playA4();
         } else {
-            console.log('no audio file for A5 yet')
             this.setState({A5: true});
-            // playA5();
+            playA5();
         }
     }
 
@@ -344,9 +346,8 @@ class Sketch extends React.Component {
             this.setState({A4s: true});
             playA4s();
         } else {
-            console.log('no audio file for A5s yet')
             this.setState({A5s: true});
-            // playA5S();
+            playA5s();
         }
     }
 
@@ -357,9 +358,8 @@ class Sketch extends React.Component {
             this.setState({B4: true});
             playB4();
         } else {
-            console.log('no audio file for B5 yet')
             this.setState({B5: true});
-            // playB5();
+            playB5();
         }
     }
 
