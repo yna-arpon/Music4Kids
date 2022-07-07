@@ -28,7 +28,7 @@ import {
     playB5
 } from './TonePianoNotes'
 
-class Sketch extends React.Component {
+class PianoNotes extends React.Component {
 
     constructor(props) {
         super(props)
@@ -65,6 +65,7 @@ class Sketch extends React.Component {
         this.myRef = React.createRef()
         this.toChoices=this.toChoices.bind(this);
         this.toChords = this.toChords.bind(this);
+        this.note = this.toChords.bind(this)
         this.C = this.C.bind(this);
         this.Cs = this.Cs.bind(this);
         this.D = this.D.bind(this);
@@ -93,19 +94,25 @@ class Sketch extends React.Component {
     Sketch = (p) => {
 
         let whiteKeys, C4Key, D4Key, E4Key, F4Key, G4Key, A4Key, B4Key, C5Key, D5Key, E5Key, F5Key, G5Key, A5Key, B5Key, whiteKeyWidth, whiteKeyHeight;
-        let blackKeys, C4KeySharp, D4KeySharp, F4KeySharp, G4KeySharp, A4KeySharp, C5KeySharp, D5KeySharp, F5KeySharp, G5KeySharp, A5KeySharp;
+        let blackKeys, C4KeySharp, D4KeySharp, F4KeySharp, G4KeySharp, A4KeySharp, C5KeySharp, D5KeySharp, F5KeySharp, G5KeySharp, A5KeySharp, blackKeyWidth, blackKeyHeight;
         let whiteKeyState, blackKeyState;
+        let xPosWhite, xPosBlack;
 
         p.setup = () => {
             p.createCanvas(p.windowWidth,  p.windowHeight);
 
             // List of piano keys in octaves 4 and 5Key
             whiteKeys = [C4Key, D4Key, E4Key, F4Key, G4Key, A4Key, B4Key, C5Key, D5Key, E5Key, F5Key, G5Key, A5Key, B5Key];
+            xPosWhite = 0;
             whiteKeys.forEach(createWhiteKey);
 
             //List of black piano keys
             blackKeys = [C4KeySharp, D4KeySharp, F4KeySharp, G4KeySharp, A4KeySharp, C5KeySharp, D5KeySharp, F5KeySharp, G5KeySharp, A5KeySharp];
+            blackKeyHeight = 0.6197 * whiteKeyHeight; 
+            blackKeyWidth = 0.553 * whiteKeyWidth
+            xPosBlack = whiteKeyWidth - (blackKeyWidth * 0.5);
             blackKeys.forEach(createBlackKey);
+
         }
 
         p.draw = () => {
@@ -139,15 +146,12 @@ class Sketch extends React.Component {
             
             blackKeyState = [C4s, D4s, F4s, G4s, A4s, C5s, D5s, F5s, G5s, A5s];
             blackKeyState.forEach(checkBlackKeyState);
-
         }
 
         // Creates white piano keys
-        function createWhiteKey() { 
-            let xPos = 0;
+        function createWhiteKey(item, i) {
 
-            for(let i = 0; i < 14; i++) {
-
+            if (i < 14) {
                 // Creates and styles white keys 
                 whiteKeyWidth = p.windowWidth / 14;
                 whiteKeyHeight = p.windowHeight / 2.75;
@@ -158,20 +162,16 @@ class Sketch extends React.Component {
                 whiteKeys[i].style('border: 1px solid black')
                 whiteKeys[i].style('border-bottom-left-radius: 10px;')
                 whiteKeys[i].style('border-bottom-right-radius: 10px;')
-                whiteKeys[i].position(xPos, p.windowHeight - whiteKeyHeight);
-                
-                xPos += whiteKeyWidth;
+                whiteKeys[i].position(xPosWhite, p.windowHeight - whiteKeyHeight);
 
+                xPosWhite += whiteKeyWidth;
             }
+
         }
 
         // Creates black piano keys
-        function createBlackKey() {
-            let blackKeyWidth = 0.553 * whiteKeyWidth;
-            let blackKeyHeight = 0.6197 * whiteKeyHeight; 
-            let xPos = whiteKeyWidth - (blackKeyWidth * 0.5);
-
-            for(let i = 0; i < 10; i++) {
+        function createBlackKey(item, i) {
+            if (i < 10) {
 
                 // Creates and styles black keys
                 blackKeys[i] = p.createButton('');
@@ -179,15 +179,17 @@ class Sketch extends React.Component {
                 blackKeys[i].style('background-color', p.color(0));
                 blackKeys[i].style('border-bottom-left-radius: 10px;');
                 blackKeys[i].style('border-bottom-right-radius: 10px;');
-                blackKeys[i].position(xPos, p.windowHeight - whiteKeyHeight)
+                blackKeys[i].position(xPosBlack, p.windowHeight - whiteKeyHeight)
+                // blackKeys[i].position(xPos, 0)
 
                 if (i === 1 || i === 4 || i === 6) {
-                    xPos += 2 * whiteKeyWidth;
+                    xPosBlack += 2 * whiteKeyWidth;
                 } else {
-                    xPos += whiteKeyWidth
+                    xPosBlack += whiteKeyWidth
                 }
             }
         }
+
         // Checks the state of each white key     
         function checkWhiteKeyState() {
             for(let i = 0; i < 14; i++) {
@@ -213,7 +215,9 @@ class Sketch extends React.Component {
 
     componentDidMount() {
         //We create a new p5 object on component mount, feed it 
-        this.myP5 = new p5(this.Sketch, this.myRef.current)
+        if (!window.myP5) {
+            window.myP5 = new p5(this.Sketch, this.myRef.current)
+        }
     }
 
     C() {
@@ -439,7 +443,7 @@ class Sketch extends React.Component {
 
         return (
             //This div will contain our p5 sketch
-            <div id='pianoPage' className='page' ref={this.myRef}>
+            <div ref={this.myRef} id='pianoPage' className='page'>
                 <div className='pianoHeader'>
                     <button className='btn pianoBtns' id='choicesBackBtn'
                         onClick={this.toChoices}>BACK</button>
@@ -505,4 +509,4 @@ class Sketch extends React.Component {
     }    
 }
 
-export default withRouter(Sketch)
+export default withRouter(PianoNotes)
