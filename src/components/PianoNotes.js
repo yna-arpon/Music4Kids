@@ -27,6 +27,8 @@ import {
     playB4,
     playB5
 } from './TonePianoNotes'
+import Play from './photos/pianoPlayBtn.png'
+import Reset from './photos/pianoResetBtn.png'
 
 class PianoNotes extends React.Component {
 
@@ -58,14 +60,14 @@ class PianoNotes extends React.Component {
             D5s: false, 
             F5s: false, 
             G5s: false, 
-            A5s: false
+            A5s: false,
+            selectedNotes: []
         }
         //p5 instance mode requires a reference on the DOM to mount the sketch
         //So we use react's createRef function to give p5 a reference
         this.myRef = React.createRef()
         this.toChoices=this.toChoices.bind(this);
         this.toChords = this.toChords.bind(this);
-        this.note = this.toChords.bind(this)
         this.C = this.C.bind(this);
         this.Cs = this.Cs.bind(this);
         this.D = this.D.bind(this);
@@ -78,6 +80,8 @@ class PianoNotes extends React.Component {
         this.A = this.A.bind(this);
         this.As = this.As.bind(this);
         this.B = this.B.bind(this);
+        this.playArray = this.playArray.bind(this);
+        this.clearArray = this.clearArray.bind(this);
     } 
 
     toChoices() {
@@ -150,9 +154,6 @@ class PianoNotes extends React.Component {
 
         // Creates white piano keys
         function createWhiteKey(item, i) {
-
-            if (i < 14) {
-                // Creates and styles white keys 
                 whiteKeyWidth = p.windowWidth / 14;
                 whiteKeyHeight = p.windowHeight / 2.75;
 
@@ -165,22 +166,17 @@ class PianoNotes extends React.Component {
                 whiteKeys[i].position(xPosWhite, p.windowHeight - whiteKeyHeight);
 
                 xPosWhite += whiteKeyWidth;
-            }
 
         }
 
         // Creates black piano keys
         function createBlackKey(item, i) {
-            if (i < 10) {
-
-                // Creates and styles black keys
                 blackKeys[i] = p.createButton('');
                 blackKeys[i].size(blackKeyWidth, blackKeyHeight);
                 blackKeys[i].style('background-color', p.color(0));
                 blackKeys[i].style('border-bottom-left-radius: 10px;');
                 blackKeys[i].style('border-bottom-right-radius: 10px;');
                 blackKeys[i].position(xPosBlack, p.windowHeight - whiteKeyHeight)
-                // blackKeys[i].position(xPos, 0)
 
                 if (i === 1 || i === 4 || i === 6) {
                     xPosBlack += 2 * whiteKeyWidth;
@@ -188,7 +184,6 @@ class PianoNotes extends React.Component {
                     xPosBlack += whiteKeyWidth
                 }
             }
-        }
 
         // Checks the state of each white key     
         function checkWhiteKeyState() {
@@ -222,224 +217,270 @@ class PianoNotes extends React.Component {
 
     C() {
         const {octave} = this.state;
+        const {selectedNotes} = this.state;
 
         if (octave === 4) {
+            selectedNotes.push('C4 ')
             this.setState({C4: true});
             playC4();
             setTimeout(() => {
                 this.setState({C4: false})
-                } , 1890);
+                } , 1880);
         } else {
+            selectedNotes.push('C5 ')
             this.setState({C5: true});
             playC5();
             setTimeout(() => {
                 this.setState({C5: false})
-                } , 1890);
+                } , 1880);
         }
     }
 
     Cs() {
         const {octave} = this.state;
-
+        const {selectedNotes} = this.state;
+        
         if (octave === 4) {
+            selectedNotes.push('D♭4 ')
             this.setState({C4s: true});
             playC4s();
             setTimeout(() => {
                 this.setState({C4s: false})
-                } , 1890)
+                } , 1880)
         } else {
+            selectedNotes.push('D♭5 ')
             this.setState({C5s: true});
             playC5s();
             setTimeout(() => {
                 this.setState({C5s: false})
-                } , 1890)
+                } , 1880)
         }
     }
 
 
     D() {
         const {octave} = this.state;
+        const {selectedNotes} = this.state;
 
         if (octave === 4) {
+            selectedNotes.push('D4 ')
             this.setState({D4: true});
             playD4();
             setTimeout(() => {
                 this.setState({D4: false})
-                } , 1890)
+                } , 1880)
         } else {
+            selectedNotes.push('D5 ')
             this.setState({D5: true});
             playD5();
             setTimeout(() => {
                 this.setState({D5: false})
-                } , 1890)
+                } , 1880)
         }
     }
 
     Ds() {
         const {octave} = this.state;
+        const {selectedNotes} = this.state;
 
         if (octave === 4) {
+            selectedNotes.push('E♭4 ')
             this.setState({D4s: true});
             playD4s();
             setTimeout(() => {
                 this.setState({D4s: false})
-                } , 1890)
+                } , 1880)
         } else {
+            selectedNotes.push('E♭5 ')
             this.setState({D5s: true});
             playD5s();
             setTimeout(() => {
                 this.setState({D5s: false})
-                } , 1890)
+                } , 1880)
         }
     }
 
     E() {
         const {octave} = this.state;
+        const {selectedNotes} = this.state;
 
         if (octave === 4) {
+            selectedNotes.push('E4 ')
             this.setState({E4: true});
             playE4();
             setTimeout(() => {
                 this.setState({E4: false})
-                } , 1890)
+                } , 1880)
         } else {
+            selectedNotes.push('E5 ')
             this.setState({E5: true});
             playE5();
             setTimeout(() => {
                 this.setState({E5: false})
-                } , 1890)
+                } , 1880)
         }
     }
 
     F() {
         const {octave} = this.state;
+        const {selectedNotes} = this.state;
 
         if (octave === 4) {
+            selectedNotes.push('F4 ')
             this.setState({F4: true});
             playF4();
             setTimeout(() => {
                 this.setState({F4: false})
-                } , 1890)
+                } , 1880)
         } else {
+            selectedNotes.push('F5 ')
             this.setState({F5: true});
             playF5();
             setTimeout(() => {
                 this.setState({F5: false})
-                } , 1890)
+                } , 1880)
         }
     }
 
     Fs() {
         const {octave} = this.state;
+        const {selectedNotes} = this.state;
 
         if (octave === 4) {
+            selectedNotes.push('G♭4 ')
             this.setState({F4s: true});
             playF4s();
             setTimeout(() => {
                 this.setState({F4s: false})
-                } , 1890)
+                } , 1880)
         } else {
+            selectedNotes.push('G♭5 ')
             this.setState({F5s: true});
             playF5s();
             setTimeout(() => {
                 this.setState({F5s: false})
-                } , 1890)
+                } , 1880)
         }
     }
 
     G() {
         const {octave} = this.state;
+        const {selectedNotes} = this.state;
 
         if (octave === 4) {
+            selectedNotes.push('G4 ')
             this.setState({G4: true});
             playG4();
             setTimeout(() => {
                 this.setState({G4: false})
-                } , 1890)
+                } , 1880)
         } else {
+            selectedNotes.push('G5 ')
             this.setState({G5: true});
             playG5();
             setTimeout(() => {
                 this.setState({G5: false})
-                } , 1890)
+                } , 1880)
         }
     }
 
     Gs() {
         const {octave} = this.state;
+        const {selectedNotes} = this.state;
 
         if (octave === 4) {
+            selectedNotes.push('A♭4 ')
             this.setState({G4s: true});
             playG4s();
             setTimeout(() => {
                 this.setState({G4s: false})
-                } , 1890)
+                } , 1880)
         } else {
+            selectedNotes.push('A♭5 ')
             this.setState({G5s: true});
             playG5s();
             setTimeout(() => {
                 this.setState({G5s: false})
-                } , 1890)
+                } , 1880)
         }
     }
 
     A() {
         const {octave} = this.state;
+        const {selectedNotes} = this.state;
 
         if (octave === 4) {
+            selectedNotes.push('A4 ')
             this.setState({A4: true});
             playA4();
             setTimeout(() => {
                 this.setState({A4: false})
-                } , 1890)
+                } , 1880)
         } else {
+            selectedNotes.push('A5 ')
             this.setState({A5: true});
             playA5();
             setTimeout(() => {
                 this.setState({A5: false})
-                } , 1890)
+                } , 1880)
         }
     }
 
     As() {
         const {octave} = this.state;
+        const {selectedNotes} = this.state;
 
         if (octave === 4) {
+            selectedNotes.push('B♭4 ')
+
             this.setState({A4s: true});
             playA4s();
             setTimeout(() => {
                 this.setState({A4s: false})
-                } , 1890)
+                } , 1880)
         } else {
+            selectedNotes.push('B♭5 ')
             this.setState({A5s: true});
             playA5s();
             setTimeout(() => {
                 this.setState({A5s: false})
-                } , 1890)
+                } , 1880)
         }
     }
 
     B() {
         const {octave} = this.state;
+        const {selectedNotes} = this.state;
 
         if (octave === 4) {
+            selectedNotes.push('B4 ')
             this.setState({B4: true});
             playB4();
             setTimeout(() => {
                 this.setState({B4: false})
-                } , 1890)
+                } , 1880)
         } else {
+            selectedNotes.push('B5 ')
             this.setState({B5: true});
             playB5();
             setTimeout(() => {
                 this.setState({B5: false})
-                } , 1890)
+                } , 1880)
         }
+    }
+
+    playArray() {
+        console.log('play array!')
+    }
+
+    clearArray() {
+        this.setState({selectedNotes: []})
     }
 
     render() {
         const {octave} = this.state;
         const {octaveTitle} = this.state;
+        const {selectedNotes} = this.state;
 
         return (
             //This div will contain our p5 sketch
@@ -466,6 +507,18 @@ class PianoNotes extends React.Component {
                         CHORDS
                     </button> 
                     {/* To be changed to page that leads to Piano chords  */}
+                </div>
+
+                <div id='musicBarContainer'>
+                    <div id='noteBar'>
+                        <h1 id='selectedNotes'>{selectedNotes}</h1>
+                    </div>
+                    <button className='btn pianoBarBtns' id='playBtn'
+                        onClick={() => {this.playArray()}}>
+                        <img className='pianoBarImg' src={ Play } alt='Play'/></button>
+                    <button className='btn pianoBarBtns' id='resetBtn' 
+                        onClick={() => {this.clearArray()}}>
+                        <img className='pianoBarImg' src={ Reset } alt='Reset'/></button>
                 </div>
 
                 <div className='noteContainer'>
