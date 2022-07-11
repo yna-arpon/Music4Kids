@@ -229,6 +229,10 @@ body {
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
   box-shadow: 4px 3px rgba(140, 140, 140, 0.8);
+  overflow-x: scroll;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 #playBtn {
@@ -244,7 +248,8 @@ body {
   height: 110%;
 }
 
-#selectedNotes {
+.displayNotes {
+  display: inline-flex;
   font-size: 30pt;
   margin-left: 2%;
   margin-top: 0.75%;
