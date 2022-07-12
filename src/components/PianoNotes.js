@@ -115,7 +115,6 @@ class PianoNotes extends React.Component {
     }
 
     createKey(str, i) {
-        console.log(str,i)
         const type = this.isBlack(str) ? 'black' : 'white'
         const keyInfo = this.info[type]
         const button = this.p.createButton('');
@@ -148,31 +147,43 @@ class PianoNotes extends React.Component {
         }
 }
 
-    playNote(note, sharp=false){
+    playNote(note, sharp, octave) {
         let lengthOfAudioFile = 1880
-        return new Promise(resolve => {
 
-            const {octave} = this.state;
+
+        return new Promise(resolve => {
+    
+            console.log('note + oct', note, octave)
             let noteWithOctave = (note + octave)
-            if (sharp) noteWithOctave += 's'
+            if (sharp) noteWithOctave += 's' // Adds 's' at the end if its a sharp
  
-            this.setState({[noteWithOctave]: true});
-            notes.get(noteWithOctave).start()
+            this.setState({[noteWithOctave]: true}); // changes color of key to yellow
+
+            notes.get(noteWithOctave).start() // plays the note
+
+            //changes key color back to white
             setTimeout(() => {
                 this.setState({[noteWithOctave]: false})
                 resolve()
                 } , lengthOfAudioFile);
             }) 
-
     }
 
-    displayArray(note) {
+    displayArray(note, sharp = false) {
         const {octave} = this.state;
 
         if (octave === 4) {
-            this.setState({displayNotes: this.state.displayNotes.concat([note + '4'])})
+            if (sharp) {
+                this.setState({displayNotes: this.state.displayNotes.concat([note + '#4'])});
+            } else {
+                this.setState({displayNotes: this.state.displayNotes.concat([note + '4'])});
+            }
         } else {
-            this.setState({displayNotes: this.state.displayNotes.concat([note + '5'])});
+            if (sharp) {
+                this.setState({displayNotes: this.state.displayNotes.concat([note + '#5'])});
+            } else {
+                this.setState({displayNotes: this.state.displayNotes.concat([note + '5'])});
+            }
         }
     }
 
@@ -182,13 +193,21 @@ class PianoNotes extends React.Component {
     
     async playArray() {
         const {displayNotes} = this.state;
-
+        
         const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
-        for (let i = 0; i < displayNotes.length; i++){
-            const note = displayNotes[i]
-            await this.playNote(note[0], this.isBlack(note))
-            await sleepNow(200)
+        for (let i = 0; i < displayNotes.length; i++) {
+            const note = displayNotes[i];
+            let octave;
+
+            if (note.length === 2) {
+                octave = parseInt(note[1])
+            } else {
+                octave = parseInt(note[2])
+            }
+
+            await this.playNote(note[0], this.isBlack(note), octave)
+            await sleepNow(1)
         }
     }
 
@@ -229,7 +248,7 @@ class PianoNotes extends React.Component {
                 </div>
 
                 <div id='musicBarContainer'>
-                    <div id='noteBar'>
+                    <div className='noteBar'>
                         {displayNotes.map((note, index) => 
                             <h1 key={index} className='displayNotes'>{note}</h1>
                         )}
@@ -244,40 +263,40 @@ class PianoNotes extends React.Component {
 
                 <div className='noteContainer'>
                     <button className='btn noteBtn' 
-                        onClick={() => {this.playNote('C'); this.displayArray('C')}}>C</button>
+                        onClick={() => {this.playNote('C', false, octave); this.displayArray('C')}}>C</button>
 
                     <button className='btn noteBtn'
-                        onClick={() => {this.playNote('C', true); this.displayArray('D♭')}}>C#/D♭</button>
+                        onClick={() => {this.playNote('C', true, octave); this.displayArray('C', true)}}>C#/D♭</button>
 
                     <button className='btn noteBtn' 
-                        onClick={() => {this.playNote('D'); this.displayArray('D')}}>D</button>
+                        onClick={() => {this.playNote('D', false, octave); this.displayArray('D')}}>D</button>
 
                     <button className='btn noteBtn' 
-                        onClick={() => {this.playNote('D', true); this.displayArray('E♭')}}>D#/E♭</button>
+                        onClick={() => {this.playNote('D', true, octave); this.displayArray('D', true)}}>D#/E♭</button>
 
                     <button className='btn noteBtn'
-                        onClick={() => {this.playNote('E'); ; this.displayArray('E')}}>E</button>
+                        onClick={() => {this.playNote('E', false, octave); ; this.displayArray('E')}}>E</button>
 
                     <button className='btn noteBtn'
-                        onClick={() => {this.playNote('F'); this.displayArray('F')}}>F</button>
+                        onClick={() => {this.playNote('F', false, octave); this.displayArray('F')}}>F</button>
 
                     <button className='btn noteBtn' 
-                        onClick={() => {this.playNote('F', true); this.displayArray('G♭')}}>F#/G♭</button>
+                        onClick={() => {this.playNote('F', true, octave); this.displayArray('F', true)}}>F#/G♭</button>
 
                     <button className='btn noteBtn' 
-                        onClick={() => {this.playNote('G'); this.displayArray('G')}}>G</button>
+                        onClick={() => {this.playNote('G', false, octave); this.displayArray('G')}}>G</button>
 
                     <button className='btn noteBtn' 
-                        onClick={() => {this.playNote('G', true); this.displayArray('A♭')}}>G#/A♭</button>
+                        onClick={() => {this.playNote('G', true, octave); this.displayArray('G', true)}}>G#/A♭</button>
 
                     <button className='btn noteBtn'
-                        onClick={() => {this.playNote('A'); this.displayArray('A')}}>A</button>
+                        onClick={() => {this.playNote('A', false, octave); this.displayArray('A')}}>A</button>
 
                     <button className='btn noteBtn'
-                        onClick={() => {this.playNote('A', true); this.displayArray('B♭')}}>A#/B♭</button>
+                        onClick={() => {this.playNote('A', true, octave); this.displayArray('A', true)}}>A#/B♭</button>
 
                     <button className='btn noteBtn'
-                        onClick={() => {this.playNote('B'); this.displayArray('B')}}>B</button>
+                        onClick={() => {this.playNote('B', false, octave); this.displayArray('B')}}>B</button>
                 </div>
             </div>
         )
