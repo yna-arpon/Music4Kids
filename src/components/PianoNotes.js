@@ -42,12 +42,8 @@ class PianoNotes extends React.Component {
         //p5 instance mode requires a reference on the DOM to mount the sketch
         //So we use react's createRef function to give p5 a reference
         this.myRef = React.createRef()
-        this.toChoices=this.toChoices.bind(this);
+        this.toChoices = this.toChoices.bind(this);
         this.toChords = this.toChords.bind(this);
-        this.playNote = this.playNote.bind(this);
-        this.displayArray = this.displayArray.bind(this);
-        // this.playArray = this.playArray.bind(this);
-        this.clearArray = this.clearArray.bind(this);
     } 
 
     toChoices() {
@@ -55,19 +51,19 @@ class PianoNotes extends React.Component {
     }
 
     toChords() {
-        this.props.navigate('/');
-        // To be changed to a page that leads to piano chords
+        this.props.navigate('/PianoChords');
     }
-
 
     // This uses p5's instance mode for sketch creation and namespacing
     Sketch = (p) => {
 
         this.p = p
+
         const numBlack = noteArray.reduce((a,b) => {
             a += (this.isBlack(b)) ? 1 : 0
             return a
         }, 0)
+        
         const numWhite = noteArray.length - numBlack
 
         this.info = {
@@ -108,7 +104,6 @@ class PianoNotes extends React.Component {
     }
 
     componentDidMount() {
-        //We create a new p5 object on component mount, feed it 
         if (!window.myP5) {
             window.myP5 = new p5(this.Sketch, this.myRef.current)
         }
@@ -149,7 +144,6 @@ class PianoNotes extends React.Component {
 
     playNote(note, sharp, octave) {
         let lengthOfAudioFile = 1880
-
 
         return new Promise(resolve => {
             let noteWithOctave = (note + octave)
@@ -206,7 +200,6 @@ class PianoNotes extends React.Component {
 
             await this.playNote(note[0], this.isBlack(note), octave)
         }
-
     }
 
     clearArray() {
@@ -220,12 +213,12 @@ class PianoNotes extends React.Component {
 
         return (
             //This div will contain our p5 sketch
-            <div ref={this.myRef} id='pianoPage' className='page'>
+            <div ref={this.myRef} className='page pianoPage'>
                 <div className='pianoHeader'>
                     <button className='btn pianoBtns' id='choicesBackBtn'
                         onClick={this.toChoices}>BACK</button>
                     
-                    <button className='btn pianoBtns' id='octaveBtn' 
+                    <button className='btn pianoBtns' 
                         onClick={() => {
                             if (octave === 4) {
                                 this.setState({octave: 5});
@@ -239,7 +232,8 @@ class PianoNotes extends React.Component {
                     </button>
 
                     <h1 className='instrumentTitle' id='pianoNotesTitle'>FREE STYLE PIANO (NOTES)</h1>
-                    <button className='btn pianoBtns' id='chordsBtn'>
+                    <button className='btn pianoBtns' id='chordsBtn'
+                        onClick={this.toChords}>
                         CHORDS
                     </button> 
                     {/* To be changed to page that leads to Piano chords  */}
@@ -260,40 +254,40 @@ class PianoNotes extends React.Component {
                 </div>
 
                 <div className='noteContainer'>
-                    <button className='btn noteBtn' 
+                    <button className='btn pianoSoundBtn noteBtn' 
                         onClick={() => {this.playNote('C', false, octave); this.displayArray('C')}}>C</button>
 
-                    <button className='btn noteBtn'
+                    <button className='btn pianoSoundBtn noteBtn'
                         onClick={() => {this.playNote('C', true, octave); this.displayArray('C', true)}}>C#/D♭</button>
 
-                    <button className='btn noteBtn' 
+                    <button className='btn pianoSoundBtn noteBtn' 
                         onClick={() => {this.playNote('D', false, octave); this.displayArray('D')}}>D</button>
 
-                    <button className='btn noteBtn' 
+                    <button className='btn pianoSoundBtn noteBtn' 
                         onClick={() => {this.playNote('D', true, octave); this.displayArray('D', true)}}>D#/E♭</button>
 
-                    <button className='btn noteBtn'
+                    <button className='btn pianoSoundBtn noteBtn'
                         onClick={() => {this.playNote('E', false, octave); ; this.displayArray('E')}}>E</button>
 
-                    <button className='btn noteBtn'
+                    <button className='btn pianoSoundBtn noteBtn'
                         onClick={() => {this.playNote('F', false, octave); this.displayArray('F')}}>F</button>
 
-                    <button className='btn noteBtn' 
+                    <button className='btn pianoSoundBtn noteBtn' 
                         onClick={() => {this.playNote('F', true, octave); this.displayArray('F', true)}}>F#/G♭</button>
 
-                    <button className='btn noteBtn' 
+                    <button className='btn pianoSoundBtn noteBtn' 
                         onClick={() => {this.playNote('G', false, octave); this.displayArray('G')}}>G</button>
 
-                    <button className='btn noteBtn' 
+                    <button className='btn pianoSoundBtn noteBtn' 
                         onClick={() => {this.playNote('G', true, octave); this.displayArray('G', true)}}>G#/A♭</button>
 
-                    <button className='btn noteBtn'
+                    <button className='btn pianoSoundBtn noteBtn'
                         onClick={() => {this.playNote('A', false, octave); this.displayArray('A')}}>A</button>
 
-                    <button className='btn noteBtn'
+                    <button className='btn pianoSoundBtn noteBtn'
                         onClick={() => {this.playNote('A', true, octave); this.displayArray('A', true)}}>A#/B♭</button>
 
-                    <button className='btn noteBtn'
+                    <button className='btn pianoSoundBtn noteBtn'
                         onClick={() => {this.playNote('B', false, octave); this.displayArray('B')}}>B</button>
                 </div>
             </div>
