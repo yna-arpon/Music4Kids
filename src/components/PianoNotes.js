@@ -152,8 +152,6 @@ class PianoNotes extends React.Component {
 
 
         return new Promise(resolve => {
-    
-            console.log('note + oct', note, octave)
             let noteWithOctave = (note + octave)
             if (sharp) noteWithOctave += 's' // Adds 's' at the end if its a sharp
  
@@ -161,20 +159,22 @@ class PianoNotes extends React.Component {
 
             notes.get(noteWithOctave).start() // plays the note
 
-            //changes key color back to white
+            setTimeout(() => {resolve()}, 600) // Time gap between notes is 600ms 
+
+            //changes key color back to white once audio is done playing 
             setTimeout(() => {
                 this.setState({[noteWithOctave]: false})
-                resolve()
                 } , lengthOfAudioFile);
-            }) 
+            })
+            
     }
 
     displayArray(note, sharp = false) {
         const {octave} = this.state;
-
         if (octave === 4) {
             if (sharp) {
                 this.setState({displayNotes: this.state.displayNotes.concat([note + '#4'])});
+
             } else {
                 this.setState({displayNotes: this.state.displayNotes.concat([note + '4'])});
             }
@@ -193,8 +193,6 @@ class PianoNotes extends React.Component {
     
     async playArray() {
         const {displayNotes} = this.state;
-        
-        const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
         for (let i = 0; i < displayNotes.length; i++) {
             const note = displayNotes[i];
@@ -207,8 +205,8 @@ class PianoNotes extends React.Component {
             }
 
             await this.playNote(note[0], this.isBlack(note), octave)
-            await sleepNow(1)
         }
+
     }
 
     clearArray() {
@@ -247,7 +245,7 @@ class PianoNotes extends React.Component {
                     {/* To be changed to page that leads to Piano chords  */}
                 </div>
 
-                <div id='musicBarContainer'>
+                <div className='musicBarContainer'>
                     <div className='noteBar'>
                         {displayNotes.map((note, index) => 
                             <h1 key={index} className='displayNotes'>{note}</h1>

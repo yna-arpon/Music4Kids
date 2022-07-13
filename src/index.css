@@ -12,8 +12,8 @@ body {
 }
 
 .page {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
@@ -215,7 +215,7 @@ body {
   height: 90px;
 }
 
-#musicBarContainer {
+.musicBarContainer {
   margin-top: 7%;
   height: 8%;
   display: flex;
@@ -230,12 +230,17 @@ body {
   border-radius: 10px;
   box-shadow: 4px 3px rgba(140, 140, 140, 0.8);
   
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: baseline;
 }
+
+.noteBar::-webkit-scrollbar {
+  display: none;
+}
+
 
 #playBtn {
   margin-left: 0.5%;
