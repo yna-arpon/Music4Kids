@@ -5,7 +5,7 @@ import { withRouter } from './withRouter';
 
 function loadNote(noteToPlay) {
     const note = new Tone.Player('https://raw.githubusercontent.com/yna-arpon/Music4Kids/main/src/components/24-piano-keys/' + noteToPlay + '_trim.mp3').toDestination();
-    return note
+    return note;
 }
 
 const octaves = [4,5];
@@ -25,7 +25,7 @@ const state = {
 const noteArray = octaveMap.flat(2);
 const mapArgs = noteArray.map((str) => {
     state[str] = false;
-    return [str, loadNote(str)]
+    return [str, loadNote(str)];
 })
 
 const notes = new Map(mapArgs);
@@ -34,7 +34,8 @@ class PianoChords extends React.Component {
 
     constructor(props) {
         super(props)
-        this.myRef = React.createRef()
+        this.state = state;
+        this.myRef = React.createRef();
         this.toChoices = this.toChoices.bind(this);
         this.toNotes = this.toNotes.bind(this);
     }
@@ -49,11 +50,11 @@ class PianoChords extends React.Component {
 
     Sketch = (p) => {
 
-        this.p = p
+        this.p = p;
 
         const numBlack = noteArray.reduce((a,b) => {
-            a += (this.isBlack(b)) ? 1 : 0
-            return a
+            a += (this.isBlack(b)) ? 1 : 0;
+            return a;
         }, 0)
         
         const numWhite = noteArray.length - numBlack
@@ -82,16 +83,16 @@ class PianoChords extends React.Component {
             
             let i = 0
             this.info.buttons = noteArray.map(str => {
-                const isWhite = !this.isBlack(str)
-                const button = this.createKey(str, i)
-                if (isWhite) i++
-                return {name: str, button}
+                const isWhite = !this.isBlack(str);
+                const button = this.createKey(str, i);
+                if (isWhite) i++;
+                return {name: str, button};
             })
 
         }
 
         this.p.draw = () => {
-            this.info.buttons.forEach(({name, button}) => this.checkKeyState(name, button))
+            this.info.buttons.forEach(({name, button}) => this.checkKeyState(name, button));
         }
     }
 
@@ -103,40 +104,55 @@ class PianoChords extends React.Component {
         button.size(keyInfo.width, keyInfo.height);
         button.style('box-sizing: border-box');
         button.style('background-color', this.p.color(keyInfo.color));
-        button.style('border: 1px solid black')
-        button.style('border-bottom-left-radius: 10px;')
-        button.style('border-bottom-right-radius: 10px;')
+        button.style('border: 1px solid black');
+        button.style('border-bottom-left-radius: 10px;');
+        button.style('border-bottom-right-radius: 10px;');
         if (type === 'white') button.position(i*keyInfo.width, this.p.windowHeight - this.info.white.height);
         else {
-            button.style('z-index:1')
-            button.position((i) * this.info.white.width - (0.5 * keyInfo.width), this.p.windowHeight - this.info.white.height)
+            button.style('z-index:1');
+            button.position((i) * this.info.white.width - (0.5 * keyInfo.width), this.p.windowHeight - this.info.white.height);
         }
 
         return button
     }
 
     checkKeyState(name, key) {
-        let state = this.state[name]
-        let isSharp = (this.isBlack(name)) ? true : false
+        let state = this.state[name];
+        let isSharp = (this.isBlack(name)) ? true : false;
         if (state) {
-            if (isSharp) key.style('background-color',this.p.color(255, 249, 192))
+            if (isSharp) key.style('background-color',this.p.color(255, 249, 192));
             else key.style('background-color', this.p.color(255, 249, 192));
         } else {
-            key.style('background-color', this.p.color(isSharp ? 'black' : 'white'))
+            key.style('background-color', this.p.color(isSharp ? 'black' : 'white'));
         }
     }
 
 
     componentDidMount() {
         if(!window.myP5) {
-            window.myP5 = new p5(this.Sketch, this.myRef.current)
+            window.myP5 = new p5(this.Sketch, this.myRef.current);
         }
     }
 
     isBlack(str) {
-        return str.includes('s') | str.includes('#') | str.includes('♭')
+        return str.includes('s') | str.includes('#') | str.includes('♭');
     }
-    
+
+    playChord(chordArray=[]) {
+        let lengthOfAudioFile = 1880
+
+        chordArray.forEach(note => {
+            this.setState({[note]: true});
+            notes.get(note).start();
+        })
+
+        setTimeout(() => {
+            this.setState({[chordArray[0]]: false});
+            this.setState({[chordArray[1]]: false});
+            this.setState({[chordArray[2]]: false});
+        }, lengthOfAudioFile)
+    }
+
     render() {
         
         return (
@@ -152,20 +168,75 @@ class PianoChords extends React.Component {
                 </div>
 
                 <div className='chordContainer'>
-                    <button className='btn pianoSoundBtn chordBtn'>C</button>
-                    <button className='btn pianoSoundBtn chordBtn'>D</button>
-                    <button className='btn pianoSoundBtn chordBtn'>E</button>
-                    <button className='btn pianoSoundBtn chordBtn'>F</button>
-                    <button className='btn pianoSoundBtn chordBtn'>G</button>
-                    <button className='btn pianoSoundBtn chordBtn'>A</button>
-                    <button className='btn pianoSoundBtn chordBtn'>B</button>
-                    <button className='btn pianoSoundBtn chordBtn'>Cm</button>
-                    <button className='btn pianoSoundBtn chordBtn'>Dm</button>
-                    <button className='btn pianoSoundBtn chordBtn'>Em</button>
-                    <button className='btn pianoSoundBtn chordBtn'>Fm</button>
-                    <button className='btn pianoSoundBtn chordBtn'>Gm</button>
-                    <button className='btn pianoSoundBtn chordBtn'>Am</button>
-                    <button className='btn pianoSoundBtn chordBtn'>Bm</button>
+                    <button className='btn pianoSoundBtn chordBtn' 
+                        onClick={() => {
+                            this.playChord(['C4','E4','G4'])
+                        }}>C</button>
+
+                    <button className='btn pianoSoundBtn chordBtn' 
+                        onClick={() => {
+                            this.playChord(['D4','F4s','A4'])
+                        }}>D</button>
+
+                    <button className='btn pianoSoundBtn chordBtn' 
+                        onClick={() => {
+                            this.playChord(['E4','G4s','B4'])
+                        }}>E</button>
+
+                    <button className='btn pianoSoundBtn chordBtn' 
+                        onClick={() => {
+                            this.playChord(['F4','A4','C5'])
+                        }}>F</button>
+
+                    <button className='btn pianoSoundBtn chordBtn' 
+                        onClick={() => {
+                            this.playChord(['G4','B4','D5'])
+                        }}>G</button>
+
+                    <button className='btn pianoSoundBtn chordBtn' 
+                        onClick={() => {
+                            this.playChord(['A4','C5s','E5'])
+                        }}>A</button>
+
+                    <button className='btn pianoSoundBtn chordBtn' 
+                        onClick={() => {
+                            this.playChord(['B4','D5s','F5s'])
+                        }}>B</button>
+
+                    <button className='btn pianoSoundBtn chordBtn' 
+                        onClick={() => {
+                            this.playChord(['C4','D4s','G4'])
+                        }}>Cm</button>
+
+                    <button className='btn pianoSoundBtn chordBtn' 
+                        onClick={() => {
+                            this.playChord(['D4','F4','A4'])
+                        }}>Dm</button>
+
+                    <button className='btn pianoSoundBtn chordBtn' 
+                        onClick={() => {
+                            this.playChord(['E4','G4','B4'])
+                        }}>Em</button>
+
+                    <button className='btn pianoSoundBtn chordBtn' 
+                        onClick={() => {
+                            this.playChord(['F4','G4s','C5'])
+                        }}>Fm</button>
+
+                    <button className='btn pianoSoundBtn chordBtn' 
+                        onClick={() => {
+                            this.playChord(['G4','A4s','D5'])
+                        }}>Gm</button>
+
+                    <button className='btn pianoSoundBtn chordBtn' 
+                        onClick={() => {
+                            this.playChord(['A4','C5','E5'])
+                        }}>Am</button>
+
+                    <button className='btn pianoSoundBtn chordBtn' 
+                        onClick={() => {
+                            this.playChord(['B4','D5','F5s'])
+                        }}>Bm</button>
                 </div>
             </div>
         )

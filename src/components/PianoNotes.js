@@ -96,6 +96,7 @@ class PianoNotes extends React.Component {
                 return {name:str, button}
             })
 
+            console.log(this.info.buttons)
         }
 
         this.p.draw = () => {
@@ -236,7 +237,6 @@ class PianoNotes extends React.Component {
                         onClick={this.toChords}>
                         CHORDS
                     </button> 
-                    {/* To be changed to page that leads to Piano chords  */}
                 </div>
 
                 <div className='musicBarContainer'>
