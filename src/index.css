@@ -266,7 +266,7 @@ body {
   display: grid;
   justify-items: center;
   justify-content: center;
-  padding-top: 220px;
+  padding-top: 35px;
   grid-template-columns: auto auto auto auto auto auto auto;
   gap: 20px 30px;
 }

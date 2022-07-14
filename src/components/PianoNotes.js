@@ -154,7 +154,7 @@ class PianoNotes extends React.Component {
 
             notes.get(noteWithOctave).start() // plays the note
 
-            setTimeout(() => {resolve()}, 600) // Time gap between notes is 600ms 
+            setTimeout(() => {resolve()}, 700) // Time gap between notes is 600ms 
 
             //changes key color back to white once audio is done playing 
             setTimeout(() => {
