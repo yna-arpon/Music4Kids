@@ -21,7 +21,8 @@ const octaveMap = octaves.map((octave) => {
 })
 
 const state = {
-    displayNotes: []
+    displayChords: [],
+    activeChord: ''
 }
 
 const noteArray = octaveMap.flat(2);
@@ -140,12 +141,17 @@ class PianoChords extends React.Component {
         return str.includes('s') | str.includes('#') | str.includes('♭');
     }
 
-    playChord(chordArray=[]) {
+    playChord(chordAndNotes=[]) {
         let lengthOfAudioFile = 1880
+        let chord = chordAndNotes[0]
+        let noteArray = chordAndNotes[1];
 
         return new Promise(resolve => {
 
-            chordArray.forEach(note => {
+            this.setState({activeChord: chord});
+            console.log('note array:' , noteArray)
+
+            noteArray.forEach(note => {
                 this.setState({[note]: true});
                 notes.get(note).start();
             })
@@ -153,33 +159,34 @@ class PianoChords extends React.Component {
             setTimeout(() => {resolve()}, 1000)
     
             setTimeout(() => {
-                this.setState({[chordArray[0]]: false});
-                this.setState({[chordArray[1]]: false});
-                this.setState({[chordArray[2]]: false});
+                this.setState({[noteArray[0]]: false});
+                this.setState({[noteArray[1]]: false});
+                this.setState({[noteArray[2]]: false});
+                this.setState({activeChord: ''})
             }, lengthOfAudioFile)
         })
     }
 
     displayArray(chordAndNotes=[]) {
-        this.setState({displayNotes: this.state.displayNotes.concat([chordAndNotes])})
+        this.setState({displayChords: this.state.displayChords.concat([chordAndNotes])})
     }
 
     async playArray() {
-        const {displayNotes} = this.state;
+        const {displayChords} = this.state;
 
-        for (let i = 0; i < displayNotes.length; i++) {
-            let chord = displayNotes[i][1];
-            console.log(chord)
+        for (let i = 0; i < displayChords.length; i++) {
+            let chord = displayChords[i];
             await this.playChord(chord);
         }
     }
 
     clearArray() {
-        this.setState({displayNotes: []})
+        this.setState({displayChords: []})
     }
 
     render() {
-        const {displayNotes} = this.state;
+        const {displayChords} = this.state;
+        const {activeChord} = this.state;
 
         return (
             <div ref={this.myRef} className='page pianoPage'>
@@ -195,8 +202,8 @@ class PianoChords extends React.Component {
 
                 <div className='musicBarContainer'>
                     <div className='noteBar'>
-                        {displayNotes.map((note, index) => 
-                            <h1 key={index} className='displayNotes'>{note[0]}</h1>
+                        {displayChords.map((chord, index) => 
+                            <h1 key={index} className='displayNotes' id={'' + (chord[0] === activeChord ? 'isPlayed' : '')}>{chord[0]}</h1>
                         )}
                     </div>
                     <button className='btn pianoBarBtns' id='playBtn'
@@ -210,72 +217,72 @@ class PianoChords extends React.Component {
                 <div className='chordContainer'>
                     <button className='btn pianoSoundBtn chordBtn' 
                         onClick={() => {
-                            this.playChord(['C4','E4','G4']); this.displayArray(['C', ['C4','E4','G4']])
+                            this.playChord(['C',['C4','E4','G4']]); this.displayArray(['C', ['C4','E4','G4']])
                         }}>C</button>
 
                     <button className='btn pianoSoundBtn chordBtn' 
                         onClick={() => {
-                            this.playChord(['D4','F4s','A4']); this.displayArray(['D', ['D4','F4s','A4']])
+                            this.playChord(['D', ['D4','F4s','A4']]); this.displayArray(['D', ['D4','F4s','A4']])
                         }}>D</button>
 
                     <button className='btn pianoSoundBtn chordBtn' 
                         onClick={() => {
-                            this.playChord(['E4','G4s','B4']); this.displayArray(['E', ['E4','G4s','B4']])
+                            this.playChord(['E', ['E4','G4s','B4']]); this.displayArray(['E', ['E4','G4s','B4']])
                         }}>E</button>
 
                     <button className='btn pianoSoundBtn chordBtn' 
                         onClick={() => {
-                            this.playChord(['F4','A4','C5']); this.displayArray(['F', ['F4','A4','C5']])
+                            this.playChord(['F', ['F4','A4','C5']]); this.displayArray(['F', ['F4','A4','C5']])
                         }}>F</button>
 
                     <button className='btn pianoSoundBtn chordBtn' 
                         onClick={() => {
-                            this.playChord(['G4','B4','D5']); this.displayArray(['G', ['G4','B4','D5']])
+                            this.playChord(['G', ['G4','B4','D5']]); this.displayArray(['G', ['G4','B4','D5']])
                         }}>G</button>
 
                     <button className='btn pianoSoundBtn chordBtn' 
                         onClick={() => {
-                            this.playChord(['A4','C5s','E5']); this.displayArray(['A', ['A4','C5s','E5']])
+                            this.playChord(['A', ['A4','C5s','E5']]); this.displayArray(['A', ['A4','C5s','E5']])
                         }}>A</button>
 
                     <button className='btn pianoSoundBtn chordBtn' 
                         onClick={() => {
-                            this.playChord(['B4','D5s','F5s']); this.displayArray(['B', ['B4','D5s','F5s']])
+                            this.playChord(['B', ['B4','D5s','F5s']]); this.displayArray(['B', ['B4','D5s','F5s']])
                         }}>B</button>
 
                     <button className='btn pianoSoundBtn chordBtn' 
                         onClick={() => {
-                            this.playChord(['C4','D4s','G4']); this.displayArray(['Cm', ['C4','D4s','G4']])
+                            this.playChord(['Cm', ['C4','D4s','G4']]); this.displayArray(['Cm', ['C4','D4s','G4']])
                         }}>Cm</button>
 
                     <button className='btn pianoSoundBtn chordBtn' 
                         onClick={() => {
-                            this.playChord(['D4','F4','A4']); this.displayArray(['Dm', ['D4','F4','A4']])
+                            this.playChord(['Dm', ['D4','F4','A4']]); this.displayArray(['Dm', ['D4','F4','A4']])
                         }}>Dm</button>
 
                     <button className='btn pianoSoundBtn chordBtn' 
                         onClick={() => {
-                            this.playChord(['E4','G4','B4']); this.displayArray(['Em', ['E4','G4s','B4']])
+                            this.playChord(['Em', ['E4','G4s','B4']]); this.displayArray(['Em', ['E4','G4s','B4']])
                         }}>Em</button>
 
                     <button className='btn pianoSoundBtn chordBtn' 
                         onClick={() => {
-                            this.playChord(['F4','G4s','C5']); this.displayArray(['Fm', ['F4','G4s','C5']])
+                            this.playChord(['Fm', ['F4','G4s','C5']]); this.displayArray(['Fm', ['F4','G4s','C5']])
                         }}>Fm</button>
 
                     <button className='btn pianoSoundBtn chordBtn' 
                         onClick={() => {
-                            this.playChord(['G4','A4s','D5']); this.displayArray(['Gm', ['G4','A4s','D5']])
+                            this.playChord(['Gm', ['G4','A4s','D5']]); this.displayArray(['Gm', ['G4','A4s','D5']])
                         }}>Gm</button>
 
                     <button className='btn pianoSoundBtn chordBtn' 
                         onClick={() => {
-                            this.playChord(['A4','C5','E5']); this.displayArray(['Am', ['A4','C5','E5']])
+                            this.playChord(['Am', ['A4','C5','E5']]); this.displayArray(['Am', ['A4','C5','E5']])
                         }}>Am</button>
 
                     <button className='btn pianoSoundBtn chordBtn' 
                         onClick={() => {
-                            this.playChord(['B4','D5','F5s']); this.displayArray(['Bm', ['B4','D5','F5s']])
+                            this.playChord(['Bm', ['B4','D5','F5s']]); this.displayArray(['Bm', ['B4','D5','F5s']])
                         }}>Bm</button>
                 </div>
             </div>

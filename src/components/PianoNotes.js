@@ -23,7 +23,8 @@ const octaveMap = octaves.map((octave) => {
 const state = {
     octave: octaves[0],
     octaveTitle: 'Octave ' + octaves[0],
-    displayNotes: []
+    displayNotes: [],
+    activeNote: ''
 }
 
 const noteArray = octaveMap.flat(2)
@@ -96,7 +97,6 @@ class PianoNotes extends React.Component {
                 return {name:str, button}
             })
 
-            console.log(this.info.buttons)
         }
 
         this.p.draw = () => {
@@ -147,18 +147,26 @@ class PianoNotes extends React.Component {
         let lengthOfAudioFile = 1880
 
         return new Promise(resolve => {
-            let noteWithOctave = (note + octave)
-            if (sharp) noteWithOctave += 's' // Adds 's' at the end if its a sharp
- 
+            let toBeActive;
+            let noteWithOctave = (note + octave);
+            if (sharp) {
+                noteWithOctave += 's'; // Adds 's' at the end if its a sharp
+                toBeActive = note + '#' + octave;
+            } else {
+                toBeActive = noteWithOctave
+            }
+
+            this.setState({activeNote: toBeActive});
             this.setState({[noteWithOctave]: true}); // changes color of key to yellow
 
-            notes.get(noteWithOctave).start() // plays the note
+            notes.get(noteWithOctave).start(); // plays the note
 
-            setTimeout(() => {resolve()}, 700) // Time gap between notes is 600ms 
+            setTimeout(() => {resolve()}, 700); // Time gap between notes is 600ms 
 
             //changes key color back to white once audio is done playing 
             setTimeout(() => {
-                this.setState({[noteWithOctave]: false})
+                this.setState({[noteWithOctave]: false}, 
+                this.setState({activeNote: ''}))
                 } , lengthOfAudioFile);
             })
             
@@ -169,7 +177,6 @@ class PianoNotes extends React.Component {
         if (octave === 4) {
             if (sharp) {
                 this.setState({displayNotes: this.state.displayNotes.concat([note + '#4'])});
-
             } else {
                 this.setState({displayNotes: this.state.displayNotes.concat([note + '4'])});
             }
@@ -211,12 +218,13 @@ class PianoNotes extends React.Component {
         const {octave} = this.state;
         const {octaveTitle} = this.state;
         const {displayNotes} = this.state;
+        const {activeNote} = this.state;
 
         return (
             //This div will contain our p5 sketch
             <div ref={this.myRef} className='page pianoPage'>
                 <div className='pianoHeader'>
-                    <button className='btn pianoBtns' id='choicesBackBtn'
+                    <button className='btn pianoBtns'
                         onClick={this.toChoices}>BACK</button>
                     
                     <button className='btn pianoBtns' 
@@ -241,8 +249,8 @@ class PianoNotes extends React.Component {
 
                 <div className='musicBarContainer'>
                     <div className='noteBar'>
-                        {displayNotes.map((note, index) => 
-                            <h1 key={index} className='displayNotes'>{note}</h1>
+                        {displayNotes.map((note, index) =>
+                            <h1 key={index} className='displayNotes' id={'' + (note === activeNote ? 'isPlayed' : '')}>{note}</h1>
                         )}
                     </div>
                     <button className='btn pianoBarBtns' id='playBtn'
@@ -254,7 +262,7 @@ class PianoNotes extends React.Component {
                 </div>
 
                 <div className='noteContainer'>
-                    <button className='btn pianoSoundBtn noteBtn' 
+                    <button className='btn pianoSoundBtn noteBtn'
                         onClick={() => {this.playNote('C', false, octave); this.displayArray('C')}}>C</button>
 
                     <button className='btn pianoSoundBtn noteBtn'

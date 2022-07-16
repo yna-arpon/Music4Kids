@@ -274,3 +274,7 @@ body {
 .chordBtn {
   width: 170px;
 }
+
+#isPlayed {
+  color: rgb(255, 249, 192);
+}
