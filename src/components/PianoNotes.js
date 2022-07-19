@@ -43,16 +43,11 @@ class PianoNotes extends React.Component {
         //p5 instance mode requires a reference on the DOM to mount the sketch
         //So we use react's createRef function to give p5 a reference
         this.myRef = React.createRef()
-        this.toChoices = this.toChoices.bind(this);
-        this.toChords = this.toChords.bind(this);
+        this.toSettings = this.toSettings.bind(this);
     } 
 
-    toChoices() {
-        this.props.navigate('/InstrumentChoices');
-    }
-
-    toChords() {
-        this.props.navigate('/PianoChords');
+    toSettings() {
+        this.props.navigate('/PianoSettings');
     }
 
     // This uses p5's instance mode for sketch creation and namespacing
@@ -224,8 +219,6 @@ class PianoNotes extends React.Component {
             //This div will contain our p5 sketch
             <div ref={this.myRef} className='page pianoPage'>
                 <div className='pianoHeader'>
-                    <button className='btn pianoBtns'
-                        onClick={this.toChoices}>BACK</button>
                     
                     <button className='btn pianoBtns' 
                         onClick={() => {
@@ -241,9 +234,10 @@ class PianoNotes extends React.Component {
                     </button>
 
                     <h1 className='instrumentTitle' id='pianoNotesTitle'>FREE STYLE PIANO (NOTES)</h1>
+
                     <button className='btn pianoBtns' id='chordsBtn'
-                        onClick={this.toChords}>
-                        CHORDS
+                        onClick={this.toSettings}>
+                        SETTINGS
                     </button> 
                 </div>
 

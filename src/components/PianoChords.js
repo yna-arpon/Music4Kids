@@ -39,16 +39,11 @@ class PianoChords extends React.Component {
         super(props)
         this.state = state;
         this.myRef = React.createRef();
-        this.toChoices = this.toChoices.bind(this);
-        this.toNotes = this.toNotes.bind(this);
-    }
-    
-    toChoices() {
-        this.props.navigate('/InstrumentChoices');
+        this.toSettings = this.toSettings.bind(this);
     }
 
-    toNotes() {
-        this.props.navigate('/PianoNotes');
+    toSettings() {
+        this.props.navigate('/PianoSettings');
     }
 
     Sketch = (p) => {
@@ -149,7 +144,6 @@ class PianoChords extends React.Component {
         return new Promise(resolve => {
 
             this.setState({activeChord: chord});
-            console.log('note array:' , noteArray)
 
             noteArray.forEach(note => {
                 this.setState({[note]: true});
@@ -191,12 +185,9 @@ class PianoChords extends React.Component {
         return (
             <div ref={this.myRef} className='page pianoPage'>
                 <div className='pianoHeader'>
-                    <button className='btn pianoBtns'
-                        onClick={this.toChoices}>BACK</button>
-                    <h1 className='instrumentTitle' id='pianoNotesTitle'>FREE STYLE PIANO (CHORDS)</h1>
-                    <button className='btn pianoBtns' id='chordsBtn'
-                        onClick={this.toNotes}>
-                        NOTES
+                    <h1 className='instrumentTitle' id='pianoChordsTitle'>FREE STYLE PIANO (CHORDS)</h1>
+                    <button className='btn pianoBtns' onClick={this.toSettings}>
+                        SETTINGS
                     </button> 
                 </div>
 

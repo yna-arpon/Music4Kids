@@ -128,7 +128,7 @@ body {
   height: 125px;
 }
 
-#instrumentChoiceTitle {
+#instrumentChoiceAndSettingsTitle {
   position:absolute;
   top: 8%;
   left: 50%;
@@ -145,7 +145,7 @@ body {
   gap: 220px 70px;
 }
 
-.instrument {
+.imgBtns {
   background: none;
   height: 100px;
 }
@@ -164,15 +164,12 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 #pianoNotesTitle {
   flex-grow: 1;
   text-align: center;
-}
-
-#chordsBtn {
-  margin-left: 100px;
 }
 
 .instrumentTitle {
@@ -262,6 +259,12 @@ body {
   margin-top: 0.75%;
 }
 
+#pianoChordsTitle {
+  flex-grow: 1;
+  text-align: center;
+  margin-left: 90px;
+}
+
 .chordContainer {
   display: grid;
   justify-items: center;
@@ -277,4 +280,13 @@ body {
 
 #isPlayed {
   color: rgb(255, 249, 192);
+}
+
+#settingsContainer {
+  display: grid; 
+  justify-items: center;
+  justify-content: center;
+  padding-top: 300px;
+  grid-template-columns: auto auto auto;
+  gap: 220px 70px;
 }
