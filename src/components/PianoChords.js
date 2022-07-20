@@ -22,7 +22,8 @@ const octaveMap = octaves.map((octave) => {
 
 const state = {
     displayChords: [],
-    activeChord: ''
+    activeChord: '',
+    currentIndex: -1
 }
 
 const noteArray = octaveMap.flat(2);
@@ -170,8 +171,15 @@ class PianoChords extends React.Component {
 
         for (let i = 0; i < displayChords.length; i++) {
             let chord = displayChords[i];
+
+            this.setState(prevState => {
+                return {currentIndex: prevState.currentIndex + 1}
+            })
+
             await this.playChord(chord);
         }
+
+        this.setState({currentIndex: -1})
     }
 
     clearArray() {
@@ -181,6 +189,7 @@ class PianoChords extends React.Component {
     render() {
         const {displayChords} = this.state;
         const {activeChord} = this.state;
+        const {currentIndex} = this.state
 
         return (
             <div ref={this.myRef} className='page pianoPage'>
@@ -194,7 +203,7 @@ class PianoChords extends React.Component {
                 <div className='musicBarContainer'>
                     <div className='noteBar'>
                         {displayChords.map((chord, index) => 
-                            <h1 key={index} className='displayNotes' id={'' + (chord[0] === activeChord ? 'isPlayed' : '')}>{chord[0]}</h1>
+                            <h1 key={index} className='displayNotes' id={'' + (chord[0] === activeChord && index === currentIndex ? 'isPlayed' : '')}>{chord[0]}</h1>
                         )}
                     </div>
                     <button className='btn pianoBarBtns' id='playBtn'

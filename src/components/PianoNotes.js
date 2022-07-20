@@ -24,7 +24,8 @@ const state = {
     octave: octaves[0],
     octaveTitle: 'Octave ' + octaves[0],
     displayNotes: [],
-    activeNote: ''
+    activeNote: '',
+    currentIndex: -1
 }
 
 const noteArray = octaveMap.flat(2)
@@ -201,12 +202,19 @@ class PianoNotes extends React.Component {
                 octave = parseInt(note[2])
             }
 
+            this.setState(prevState => {
+                return {currentIndex: prevState.currentIndex + 1}
+            })
+
             await this.playNote(note[0], this.isBlack(note), octave)
         }
+
+        this.setState({currentIndex: -1})
     }
 
     clearArray() {
         this.setState({displayNotes: []})
+        this.setState({currentIndex: -1}) // not needed?
     }
 
     render() {
@@ -214,6 +222,7 @@ class PianoNotes extends React.Component {
         const {octaveTitle} = this.state;
         const {displayNotes} = this.state;
         const {activeNote} = this.state;
+        const {currentIndex} = this.state;
 
         return (
             //This div will contain our p5 sketch
@@ -244,7 +253,7 @@ class PianoNotes extends React.Component {
                 <div className='musicBarContainer'>
                     <div className='noteBar'>
                         {displayNotes.map((note, index) =>
-                            <h1 key={index} className='displayNotes' id={'' + (note === activeNote ? 'isPlayed' : '')}>{note}</h1>
+                            <h1 key={index} className='displayNotes' id={'' + (note === activeNote && index === currentIndex ? 'isPlayed' : '')}>{note}</h1>
                         )}
                     </div>
                     <button className='btn pianoBarBtns' id='playBtn'
