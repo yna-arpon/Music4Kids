@@ -4,6 +4,7 @@ import * as Tone from 'tone';
 import { withRouter } from './withRouter';
 import Play from './photos/pianoPlayBtn.png';
 import Reset from './photos/pianoResetBtn.png';
+import BackSpace from './photos/pianoBackSpaceBtn.png';
 
 function loadNote(noteToPlay) {
     const note = new Tone.Player('https://raw.githubusercontent.com/yna-arpon/Music4Kids/main/src/components/24-piano-keys/' + noteToPlay + '_trim.mp3').toDestination();
@@ -182,6 +183,12 @@ class PianoChords extends React.Component {
         this.setState({currentIndex: -1})
     }
 
+    backspace() {
+        const {displayChords} = this.state;
+        displayChords.splice(-1);
+        this.setState({displayChords: displayChords})
+    }
+
     clearArray() {
         this.setState({displayChords: []})
     }
@@ -209,6 +216,11 @@ class PianoChords extends React.Component {
                     <button className='btn pianoBarBtns' id='playBtn'
                         onClick={() => {this.playArray()}}>
                         <img className='pianoBarImg' src={ Play } alt='Play'/></button>
+
+                    <button className='btn pianoBarBtns'
+                        onClick={() => {this.backspace()}}>
+                        <img className='pianoBarImg' src={ BackSpace } alt='Backspace'/></button>
+
                     <button className='btn pianoBarBtns' id='resetBtn' 
                         onClick={() => {this.clearArray()}}>
                         <img className='pianoBarImg' src={ Reset } alt='Reset'/></button>
