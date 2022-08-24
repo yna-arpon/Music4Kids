@@ -137,12 +137,15 @@ body {
 }
 
 #instrumentContainer {
-  display: grid; 
-  justify-items: center;
+  display: grid;
   justify-content: center;
-  padding-top: 100px;
   grid-template-columns: auto auto;
   gap: 220px 70px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .imgBtns {
