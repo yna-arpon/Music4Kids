@@ -21,7 +21,8 @@ const Header = () => {
             </button>
       </div>
 
-      <div>
+      {/* Tutorial mode to be implemented */}
+      <div> 
         <button className="btn modeOptions" id="tutorialOptn">
           TUTORIAL
         </button>

@@ -3,8 +3,6 @@ import BackBtn from './photos/PianoSettingsBackBtn.png'
 import ChordsBtn from './photos/PianoChordsSettings.png';
 import NoteBtn from './photos/NoteSettingsBtn.png';
 
-
-
 const Instruments = () => {
     let navigate = useNavigate();
   return (
