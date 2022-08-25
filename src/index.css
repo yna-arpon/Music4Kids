@@ -71,6 +71,12 @@ body {
   font-size: 50px;
 }
 
+#tutorialOptn{
+  background: rgb(226, 226, 226);
+  cursor: auto;
+  /* Temporarily grey since not this mode is not developed yet */
+}
+
 .choices {
   background-image: url('./components/photos/chooseASong.png');
   background-color: white;
@@ -151,6 +157,10 @@ body {
 .imgBtns {
   background: none;
   height: 100px;
+}
+
+.bwBtn{
+  cursor: auto;
 }
 
 .instrumentImg {

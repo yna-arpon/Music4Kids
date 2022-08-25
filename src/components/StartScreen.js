@@ -14,19 +14,19 @@ const Header = () => {
       <h1 className='title' id='subtitle'>Let's make some music!</h1>
 
       <div>
-        <button className="btn modeOptions" onClick={() => (
-          navigate('/TutorialSongChoices')
-        )}>
-          TUTORIAL
-        </button>
-      </div>
-        <div>
             <button className="btn modeOptions" onClick={() => (
               navigate('/InstrumentChoices')
             )}>
               FREE STYLE
             </button>
-        </div>
+      </div>
+
+      <div>
+        <button className="btn modeOptions" id="tutorialOptn">
+          TUTORIAL
+        </button>
+      </div>
+       
     </div>   
   )
 }

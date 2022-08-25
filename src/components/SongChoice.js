@@ -6,6 +6,7 @@ import TwinkleStar from './photos/Twinkle Twinkle Little Star.png'
 import HotCrossBuns from './photos/Hot cross buns.png'
 import MaryLamb from './photos/Mary Lamb.png'
 
+// To be developed - all buttons are placeholders. Not actual page on app yet.
 const SongChoice = () => {
   let navigate = useNavigate();
 

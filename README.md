@@ -37,6 +37,8 @@ _Music4Kids_ currently offers a virtual piano keyboard that prompts the user to 
 
 It was built using the JavaScript libraries React.js, Tone.js, and p5.js. React.js was used to build the user interface of the application, with each page being a react component. The start screen, song tutorial menu, instrument menu, and piano settings pages are all functional components. While the piano notes and chords pages are class components to ease the process of integrating p5 sketches into these pages. p5.js was used to create the piano keyboard illustration using [this method.](https://dev.to/christiankastner/integrating-p5-js-with-react-i0d) The audio for the piano notes/chords was recorded in FL Studio and implemented into the application using Tone.js' 'Player' function to play custom audio files on demand.
 
+![Using Music4Kids with P300 Control](/src/components/photos/P300%20Music4Kids%20Demo.gif)
+
 To interact with _Music4Kids_ using P300-control, _Mindset_, a P300 software provided by collaborators at the University of Toronto, was used. _Mindset_ works by detecting the buttons on a given page and overlaying a flashing stimulus over them. By connecting a BCI headset to the system, P300 control can be achieved.
 
 ### _Testing Music4Kids_
