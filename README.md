@@ -31,7 +31,7 @@ To navigate and play _Music4Kids_, a P300 BCI paradigm is used. This involves as
 
 ### _Building Music4Kids_
 
-_Music4Kids_ currently offers a virtual piano keyboard that prompts the user to build a queue of selected notes and chords to be played in sequence.
+_Music4Kids_ was first designed in Figma (see prototype here: https://www.figma.com/file/uF6cFDqFc1a1X8YwpxQAHW/Music4Kids?node-id=0%3A1), it currently offers a virtual piano keyboard that prompts the user to build a queue of selected notes and chords to be played in sequence.
 
 ![Music4Kids Demonstration](/src/components/photos/Music4Kids%20Demo.gif)
 
