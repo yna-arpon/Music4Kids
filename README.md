@@ -17,7 +17,7 @@ _Music4Kids_ is a JavaScript application designed for P300-BCI control to provid
 
 ## **Background**
 
-Children suffering from quadriplegic cerebral palsy are unable to experience fun and meaningful aspects of childhood that nurture healthy development and learning. One of which is participation in musical activity, an activity that is fun, healthy for the development of children, and improves their behavior. Therefore, we must find novel solutions to enrich children's childhood. _Music4Kids_ aims to do just that by developing a BCI-controlled application to allow children with disabilities to learn and play music.
+Children suffering from quadriplegic cerebral palsy are unable to experience fun and meaningful aspects of childhood that nurture healthy development and learning. One of which is participation in musical activity, an activity that is fun, healthy for the development of children, and improves their behavior. Therefore, we must find novel solutions to enrich children's childhood. _Music4Kids_ aims to do just that by using BCI-controls to allow children with disabilities to learn and play music.
 
 ### _The Workings of Brain-Computer Interfaces (BCI)_
 
