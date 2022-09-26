@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
 
+/* General CSS  */
 body {
   margin: 0;
   font-family: 'Righteous';
@@ -22,6 +23,14 @@ body {
   background-size: cover;
 }
 
+.btn {
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Start page CSS */
 #start {
   display: flex;
   flex-direction: column;
@@ -55,13 +64,6 @@ body {
   text-shadow: -1px -1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF;
 }
 
-.btn {
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-}
-
 .modeOptions{
   background: rgba(255, 236, 188, 0.7);
   padding: 20px 40px;
@@ -82,10 +84,28 @@ body {
   background-color: white;
 }
 
+/* General Instrument / Song Choice CSS */
+.backToMenu {
+  margin: 30px;
+  background: #FCB811;
+  box-shadow: inset 3px 3px 3px 2px #d39a0b;
+}
+
+.backBtn {
+  padding: 10px 10px;
+  border-radius: 20px;
+  font-size: 20pt;
+  
+  display: flex;
+  align-items: left;
+  justify-content: left;
+}
+
+/* Tutorial song choices CSS */
+
 #songChoiceHeader {
   display: flex;
   vertical-align: top;
-  
 }
 
 #songChoiceTitle {
@@ -93,19 +113,6 @@ body {
   top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.menuBackBtn {
-  background: #FCB811;
-  padding: 10px 10px;
-  margin: 30px;
-  border-radius: 20px;
-  box-shadow: inset 3px 3px 3px 2px #d39a0b;
-  font-size: 20pt;
-  
-  display: flex;
-  align-items: left;
-  justify-content: left;
 }
 
 .songLevels {
@@ -134,6 +141,7 @@ body {
   height: 125px;
 }
 
+/* Song Choice CSS */
 #instrumentChoiceAndSettingsTitle {
   position:absolute;
   top: 8%;
@@ -159,6 +167,7 @@ body {
   height: 100px;
 }
 
+/* CSS for black and white buttons */
 .bwBtn{
   cursor: auto;
 }
@@ -168,6 +177,7 @@ body {
   height: 293.97px;
 }
 
+/* Piano Page CSS */
 .pianoPage {
   background-image: url('./components/photos/PianoChordsBG.png');
   background-color: white;
@@ -189,6 +199,7 @@ body {
   font-size: 33pt;
   color:white;
   margin-top: 5px;
+  text-align: center;
 }
 
 .pianoBtns {
@@ -224,7 +235,7 @@ body {
   width: 190px;
 }
 
-.musicBarContainer {
+.pianoBarContainer {
   margin-top: 7%;
   height: 8%;
   display: flex;
@@ -232,13 +243,13 @@ body {
   justify-content: center;
 }
 
-
-.noteBar {
+/* General Music Bar Styling */
+.musicBar {
   width: 80%;
   color: white;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
-  box-shadow: 4px 3px rgba(140, 140, 140, 0.8);
+  box-shadow: 3px 3px 3px 1px rgba(140, 140, 140, 0.5);
   
   overflow-x: auto;
   overflow-y: hidden;
@@ -247,16 +258,16 @@ body {
   align-items: baseline;
 }
 
-.noteBar::-webkit-scrollbar {
+.musicBar::-webkit-scrollbar {
   display: none;
 }
 
 
-#playBtn {
+.playBtn {
   margin-left: 0.5%;
 }
 
-.pianoBarBtns {
+.musicBarBtns {
   background: none;
   border: none;
 }
@@ -274,7 +285,6 @@ body {
 
 #pianoChordsTitle {
   flex-grow: 1;
-  text-align: center;
   margin-left: 90px;
 }
 
@@ -295,6 +305,7 @@ body {
   color: rgb(255, 249, 192);
 }
 
+/* Piano Settings CSS */
 #settingsContainer {
   display: grid; 
   justify-items: center;
@@ -302,4 +313,71 @@ body {
   padding-top: 300px;
   grid-template-columns: auto auto auto;
   gap: 220px 70px;
+}
+
+/* Beat Pad Page CSS */
+#beatPad {
+  background-image: url('./components/photos/beatPad.png');
+}
+
+#beatPadToInstruments {
+  padding: 10px 10px;
+  margin: 10px;
+  font-size: 18pt;
+  background: #5DCA89;
+  box-shadow: inset 3px 3px 3px 2px #367650;
+}
+
+#beatPadTitle {
+  position:absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#beatContainer {
+  /* positions container */
+    position:absolute;
+    top: 68%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  /* styles container */
+    width: 89%;
+    height: 60%;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    box-shadow: 3px 3px 3px 2px rgba(96, 96, 96, 0.6);
+  
+  /* formats buttons */
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: auto auto auto;
+    gap: 15px 120px;
+}
+
+.beatBtn {
+  /* formats numbers */
+  font-size: 50pt;
+  text-shadow: -2px 2px 2px rgb(164, 164, 164);
+  background: rgba(102, 135, 143, 0.78);
+  width: 315px;
+  height: 130px;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 7px 7px white;
+}
+
+#beatBarContainer {
+  margin-top: 11%;
+  margin-left: 9px;
+  height: 8%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#beatMusicBar{
+  width: 69.5%
 }

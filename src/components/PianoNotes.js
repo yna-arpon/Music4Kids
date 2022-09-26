@@ -2,9 +2,9 @@ import React from 'react';
 import p5 from 'p5';
 import * as Tone from 'tone';
 import { withRouter } from './withRouter';
-import Play from './photos/pianoPlayBtn.png';
-import Reset from './photos/pianoResetBtn.png';
-import BackSpace from './photos/pianoBackSpaceBtn.png'
+import Play from './photos/playBtn.png';
+import Reset from './photos/resetBtn.png';
+import BackSpace from './photos/backSpaceBtn.png'
 
 function loadNote(noteToPlay) {
     const note = new Tone.Player('https://raw.githubusercontent.com/yna-arpon/Music4Kids/main/src/components/24-piano-keys/' + noteToPlay + '_trim.mp3').toDestination();
@@ -256,21 +256,21 @@ class PianoNotes extends React.Component {
                     </button> 
                 </div>
 
-                <div className='musicBarContainer'>
-                    <div className='noteBar'>
+                <div className='pianoBarContainer'>
+                    <div className='musicBar'>
                         {displayNotes.map((note, index) =>
                             <h1 key={index} className='displayNotes' id={'' + (note === activeNote && index === currentIndex ? 'isPlayed' : '')}>{note}</h1>
                         )}
                     </div>
-                    <button className='btn pianoBarBtns' id='playBtn'
+                    <button className='btn musicBarBtns playBtn'
                         onClick={() => {this.playArray()}}>
                         <img className='pianoBarImg' src={ Play } alt='Play'/></button>
 
-                    <button className='btn pianoBarBtns'
+                    <button className='btn musicBarBtns'
                         onClick={() => {this.backspace()}}>
                         <img className='pianoBarImg' src={ BackSpace } alt='Backspace'/></button>
 
-                    <button className='btn pianoBarBtns'
+                    <button className='btn musicBarBtns'
                         onClick={() => {this.clearArray()}}>
                         <img className='pianoBarImg' src={ Reset } alt='Reset'/></button>
                 </div>

@@ -14,7 +14,7 @@ const SongChoice = () => {
     <div className='page choices'>
         <div id='songChoiceHeader'>
             <div>
-              <button className='btn menuBackBtn' 
+              <button className='btn backBtn backToMenu' 
               onClick={() => {navigate('/')}}>BACK</button>
             </div>
             <div id='songChoiceTitle'>

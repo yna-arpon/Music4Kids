@@ -9,7 +9,7 @@ const Instruments = () => {
   return (
    <div className='page choices'>
         <div>
-            <button className='btn menuBackBtn' onClick={
+            <button className='btn backBtn backToMenu' onClick={
                 () => {navigate('/')}
             }>BACK</button>
         </div>
