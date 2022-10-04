@@ -43,6 +43,7 @@ const BeatPad = () => {
 
             {/* Beat Contaner div */}
             <div id='beatContainer'>
+                {/* Add sounds */}
                 <button className='beatBtn btn'>1</button>
                 <button className='beatBtn btn'>2</button>
                 <button className='beatBtn btn'>3</button>
